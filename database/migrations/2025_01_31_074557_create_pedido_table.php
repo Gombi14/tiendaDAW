@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nom');
             $table->text('descripcio');
             $table->string('nom_producte');
-            $table->int('cuantitat');
+            $table->integer('cuantitat');
             $table->decimal('preu_producte',8,2);
-            $table->bool('estat');
+            $table->boolean('estat');
             $table->unsignedBigInteger('ID_client');
             $table->foreign('ID_client')->references('id')->on('compradors')->onDelete('cascade');
             $table->timestamps();

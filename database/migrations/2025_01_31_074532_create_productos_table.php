@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->text('descripcio');
-            $table->decimal('preu');
-            $table->int('stock', 8, 2);
-            $table->bool('destacat');
+            $table->decimal('preu', 8 ,2);
+            $table->integer('stock');
+            $table->boolean('destacat');
             $table->unsignedBigInteger('ID_categoria');
             $table->foreign('ID_categoria')->references('id')->on('categoria')->onDelete('cascade');
             $table->timestamps();

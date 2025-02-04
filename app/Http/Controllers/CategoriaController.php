@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Categoria extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class Categoria extends Controller
      */
     public function create()
     {
-        //
+        return view('vista2');
     }
 
     /**
@@ -27,7 +27,7 @@ class Categoria extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view("vista3");
     }
 
     /**
