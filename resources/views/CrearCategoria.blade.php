@@ -1,8 +1,8 @@
-<form action="{{ route('categoria.store') }}" method="POST">
+<form action="#" method="POST">
     @csrf
     <div>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>S
+        <input type="text" id="nombre" name="nombre" required>
     </div>
     <div>
         <button type="submit">Crear Categoría</button>

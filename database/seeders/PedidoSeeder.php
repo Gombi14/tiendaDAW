@@ -12,6 +12,21 @@ class PedidoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('pedido')->insert(
+            [
+                'id_comprador' => 1,
+                'id_producte' => 1,
+                'quantitat' => 1,
+                'preu_total' => 10,
+                'data_compra' => '2021-10-10'
+            ],
+            [
+                'id_comprador' => 2,
+                'id_producte' => 2,
+                'quantitat' => 2,
+                'preu_total' => 20,
+                'data_compra' => '2021-10-10'
+            ]
+        );
     }
 }
