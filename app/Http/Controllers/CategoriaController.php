@@ -27,7 +27,17 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            
+        ]);
+
+        $categoria = new Categoria();
+        $categoria->nombre = $request->input('nombre');
+        $categoria->descripcion = $request->input('descripcion');
+        $categoria->save();
+
+        return redirect()->route('/')->with('success', 'Categoría creada exitosamente.');
     }
 
     /**

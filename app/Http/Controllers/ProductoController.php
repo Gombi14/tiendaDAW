@@ -27,7 +27,28 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'precio' => 'required|numeric',
+            'Foto' => 'required|image',
+            'Stock' => 'required|integer',
+            'Destacat' => 'required|boolean',
+            
+            
+        ]);
+
+        // Create a new product instance and save it to the database
+        $producto = new Producto();
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->precio = $request->input('precio');
+        $producto->cantidad = $request->input('cantidad');
+        $producto->save();
+
+        // Redirect to a specific route with a success message
+        return redirect()->route('/')->with('success', 'Producto creado exitosamente');
     }
 
     /**
