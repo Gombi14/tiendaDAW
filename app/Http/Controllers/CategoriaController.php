@@ -34,7 +34,6 @@ class CategoriaController extends Controller
 
         $categoria = new Categoria();
         $categoria->nombre = $request->input('nombre');
-        $categoria->descripcion = $request->input('descripcion');
         $categoria->save();
 
         return redirect()->route('/')->with('success', 'Categoría creada exitosamente.');
