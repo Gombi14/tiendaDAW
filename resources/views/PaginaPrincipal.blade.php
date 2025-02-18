@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container text-center mt-5">
-        <h1>Bober Kurwa witaj w sklepie laravel</h1>
+        <h1>Benvingut</h1>
+        
         <div class="mt-4">
             <a href="/crearCategoria" class="btn btn-primary">Crear Categoría</a>
             <a href="/crearProducto" class="btn btn-secondary">Crear Producto</a>

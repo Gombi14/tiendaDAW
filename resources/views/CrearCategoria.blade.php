@@ -1,4 +1,4 @@
-<form action="#" method="POST">
+<form action="/insertarCategoria" method="POST">
     @csrf
     <div>
         <label for="nombre">Nombre:</label>

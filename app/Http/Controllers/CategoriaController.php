@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categoria;
+
 
 class CategoriaController extends Controller
 {
@@ -28,12 +30,12 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             
         ]);
 
         $categoria = new Categoria();
-        $categoria->nombre = $request->input('nombre');
+        $categoria->name = $request->input('name');
         $categoria->save();
 
         return redirect()->route('/')->with('success', 'Categoría creada exitosamente.');

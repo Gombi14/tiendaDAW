@@ -29,22 +29,28 @@ class ProductoController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'required|string',
-            'precio' => 'required|numeric',
-            'Foto' => 'required|image',
-            'Stock' => 'required|integer',
-            'Destacat' => 'required|boolean',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            //'image' => 'required|image',
+            'stock' => 'required|integer',
+            'featured' => 'required|boolean',
+            //'category_id' => 'required|integer',
+            
             
             
         ]);
 
         // Create a new product instance and save it to the database
         $producto = new Producto();
-        $producto->nombre = $request->input('nombre');
-        $producto->descripcion = $request->input('descripcion');
-        $producto->precio = $request->input('precio');
-        $producto->cantidad = $request->input('cantidad');
+        $producto->nombre = $request->input('name');
+        $producto->descripcion = $request->input('description');
+        $producto->precio = $request->input('price');
+        //$producto->imagen = $request->file('image')->store('public');
+        $producto->stock = $request->input('stock');
+        $producto->destacado = $request->input('featured');
+        //$producto->categoria_id = $request->input('category_id');
+        
         $producto->save();
 
         // Redirect to a specific route with a success message

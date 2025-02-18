@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
-    protected $table = 'pedidos';
+    protected $table = 'orders';
 
     public function comprador(): BelongsTo
     {
