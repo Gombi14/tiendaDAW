@@ -27,18 +27,21 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            
+            'created_at' => 'required|date',
+            'updated_at' => 'required|date',
         ]);
 
         $categoria = new Categoria();
-        $categoria->name = $request->input('name');
+        $categoria->name = $request->name;
+        $categoria->created_at = now();
+        $categoria->updated_at = now();
         $categoria->save();
 
-        return redirect()->route('/')->with('success', 'Categoría creada exitosamente.');
+        return redirect('PaginaPrincipal');
     }
 
     /**
