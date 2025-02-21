@@ -4,15 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 
-//Drakukeo, 2021
 
-Route::get('/crearCategoria', [CategoriaController::class, 'create']);
 
-Route::post('/insertarCategoria', [CategoriaController::class, 'store']);
+Route::controller(CategoriaController::class)->group(function ()
+{
+    Route::get('/crearCategoria', 'create');
+    Route::post('/insertarCategoria', 'store')->name('categoria.store');
+});
 
-Route::get('/crearProducto', [ProductoController::class, 'create']);
+Route::controller(ProductoController::class)->group(function ()
+{
+    Route::get('/crearProducto', 'create');
+    Route::post('/insertarProducto', 'store')->name('producto.store');
+});
 
 
 Route::get('/', function () {
     return view('PaginaPrincipal');
-});
+})->name('principalAdmin');
