@@ -11,8 +11,12 @@
         <h1>Benvingut</h1>
         
         <div class="mt-4">
-            <a href="/crearCategoria" class="btn btn-primary">Crear Categoría</a>
-            <a href="/crearProducto" class="btn btn-secondary">Crear Producto</a>
+            <a href="categoria.create" class="btn btn-primary">Crear Categoría</a>
+            <a href="producto.create" class="btn btn-secondary">Crear Producto</a>
+        </div>
+        <div class="mt-4">
+            <a href="/mostrarCategorias" class="btn btn-secondary">Mostrar Categorias</a>
+            <a href="/mostrarProductos" class="btn btn-primary">Mostrar Productos</a>
         </div>
     </div>
 </body>

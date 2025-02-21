@@ -13,7 +13,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+        return view('MostrarCategorias', compact('categorias'));
     }
 
     /**
@@ -56,7 +57,8 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categorias = Categoria::all();
+        return view(('EditarProducto'), compact('categorias'));
     }
 
     /**
@@ -74,4 +76,10 @@ class CategoriaController extends Controller
     {
         //
     }
+
+    public function deactivate(string $id)
+    {
+        //
+    }
 }
+

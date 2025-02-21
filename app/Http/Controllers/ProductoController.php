@@ -13,7 +13,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        //$categorias = Categoria::all();
+        return view('MostrarProductos', compact('productos'));
     }
 
     /**
@@ -91,4 +93,10 @@ class ProductoController extends Controller
     {
         //
     }
+
+    public function deactivate(string $id)
+    {
+        //
+    }
 }
+
