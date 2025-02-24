@@ -19,7 +19,67 @@ class ProductosSeeder extends Seeder
           'price' => 10,
           'stock' => 100,
           'featured' => true,
-          'category_id' => 9,
+          'category_id' => 1,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Pantalon',
+          'description' => 'Pantalon de algodon',
+          'price' => 20,
+          'stock' => 50,
+          'featured' => true,
+          'category_id' => 2,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Mesa',
+          'description' => 'Mesa de madera',
+          'price' => 50,
+          'stock' => 10,
+          'featured' => false,
+          'category_id' => 3,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Pantalon',
+          'description' => 'Pantalon de algodon',
+          'price' => 20,
+          'stock' => 50,
+          'featured' => true,
+          'category_id' => 4,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Mesa',
+          'description' => 'Mesa de madera',
+          'price' => 50,
+          'stock' => 10,
+          'featured' => false,
+          'category_id' => 5,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Pantalon',
+          'description' => 'Pantalon de algodon',
+          'price' => 20,
+          'stock' => 50,
+          'featured' => true,
+          'category_id' => 6,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Mesa',
+          'description' => 'Mesa de madera',
+          'price' => 50,
+          'stock' => 10,
+          'featured' => false,
+          'category_id' => 7,
           'created_at' => now(),
           'updated_at' => now()
         ],
@@ -39,6 +99,16 @@ class ProductosSeeder extends Seeder
           'price' => 50,
           'stock' => 10,
           'featured' => false,
+          'category_id' => 9,
+          'created_at' => now(),
+          'updated_at' => now()
+        ],
+        [
+          'name' => 'Pantalon',
+          'description' => 'Pantalon de algodon',
+          'price' => 20,
+          'stock' => 50,
+          'featured' => true,
           'category_id' => 10,
           'created_at' => now(),
           'updated_at' => now()

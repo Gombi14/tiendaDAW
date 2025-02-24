@@ -27,6 +27,41 @@ class CategoriaSeeder extends Seeder
                 'name' => 'Mueble',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'Electrodomestico',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Electronico',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Juguete',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Libro',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Pelicula',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Videojuego',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'Zapato',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         
         ]);
