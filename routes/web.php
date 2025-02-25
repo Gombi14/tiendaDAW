@@ -10,10 +10,12 @@ Route::controller(CategoriaController::class)->group(function ()
 {
     Route::get('/crearCategoria', 'create')->name('categoria.create');
     Route::get('/editarCategoria/{id}', 'edit')->name('categoria.edit');
-    Route::get('/mostrarCategorias', 'index');
+    Route::get('/mostrarCategorias', 'index')->name('categoria.index');
+    Route::get('/mostrarCategoriasDesactivadas', 'showDeactivated')->name('categoria.showDeactivated');
     Route::post('/insertarCategoria', 'store')->name('categoria.store');
     Route::post('/updateCategoria', 'update')->name('categoria.update');
-    Route::post('/desactivarCategoria', 'deactivate')->name('categoria.deactivate');
+    Route::post('/desactivarCategoria{id}', 'deactivate')->name('categoria.deactivate');
+    Route::post('/activarCategoria{id}', 'activate')->name('categoria.activate');
 
 });
 
@@ -21,10 +23,12 @@ Route::controller(ProductoController::class)->group(function ()
 {
     Route::get('/crearProducto', 'create')->name('producto.create');
     Route::get('/editarProducto/{id}', 'edit')->name('producto.edit');
-    Route::get('/mostrarProductos', 'index');
+    Route::get('/mostrarProductos', 'index')->name('producto.index');
+    Route::get('/mostrarProductosDesactivados', 'showDeactivated')->name('producto.showDeactivated');
     Route::post('/insertarProducto', 'store')->name('producto.store');
     Route::post('/updateProducto', 'update')->name('producto.update');
-    Route::post('/desactivarProducto', 'deactivate')->name('producto.deactivate');
+    Route::post('/desactivarProducto{id}', 'deactivate')->name('producto.deactivate');
+    Route::post('/activarProducto{id}', 'activate')->name('producto.activate');
 });
 
 

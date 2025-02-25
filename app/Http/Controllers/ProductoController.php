@@ -13,9 +13,15 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
-        //$categorias = Categoria::all();
+        $productos = Producto::where('active', true)->with('categoria')->get();
         return view('MostrarProductos', compact('productos'));
+    }
+
+
+    public function showDeactivated()
+    {
+        $productos = Producto::where('active', false)->get();
+        return view('MostrarProductosDesactivados', compact('productos'));
     }
 
     /**
@@ -96,7 +102,21 @@ class ProductoController extends Controller
 
     public function deactivate(string $id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $producto->active = false;
+        $producto->save();
+
+        return redirect()->route('producto.index')->with('success', 'Producto desactivado exitosamente');
+    }
+    
+
+    public function activate(string $id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->active = true;
+        $producto->save();
+
+        return redirect()->route('producto.showDeactivated')->with('success', 'Producto activado exitosamente');
     }
 }
 

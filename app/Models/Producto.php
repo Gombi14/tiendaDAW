@@ -15,5 +15,6 @@ class Producto extends Model
         'stock',
         'featured',
         'category_id',
+        'active',
     ];
 }

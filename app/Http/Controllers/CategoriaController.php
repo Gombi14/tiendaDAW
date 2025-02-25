@@ -13,8 +13,14 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('active', true)->get();
         return view('MostrarCategorias', compact('categorias'));
+    }
+
+    public function showDeactivated()
+    {
+        $categorias = Categoria::where('active', false)->get();
+        return view('MostrarCategoriasDesactivadas', compact('categorias'));
     }
 
     /**
@@ -79,7 +85,21 @@ class CategoriaController extends Controller
 
     public function deactivate(string $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        $categoria->active = false;
+        $categoria->save();
+
+        return redirect()->route('categoria.index')->with('success', 'Producto desactivado exitosamente');
     }
-}
+    
+    public function activate(string $id)
+    {
+        $categoria = Categoria::findOrFail($id);
+        $categoria->active = true;
+        $categoria->save();
+
+        return redirect()->route('categoria.showDeactivated')->with('success', 'Producto desactivado exitosamente');
+    }
+    }
+
 
