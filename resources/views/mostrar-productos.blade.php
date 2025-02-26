@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="mt-4">
+    <a href="{{ route('producto.create') }}" class="btn btn-primary">Crear Producto</a>
+    <a href="{{ route('producto.showDeactivated') }}" class="btn btn-secondary">Ver Productos Desactivados</a>
+</div>
     <div class="container">
         <h1>Lista de Productos</h1>
         <table class="table table-bordered">
@@ -12,8 +16,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
                     <th>Descripcion</th>
+                    <th>Precio</th>
                     <th>Stock</th>
                     <th>Destacado</th>
                     <th>Categoria</th>
@@ -29,12 +33,11 @@
                     <td>{{ $producto->price }}</td>
                     <td>{{ $producto->stock}}</td>
                     <td>{{ $producto->featured}}</td>
-                    <td>{{ $producto->category_id}}</td>
+                    <td>{{ $producto->categoria->name}}</td>
                     <td>
                         <a href="{{ route('producto.edit', $producto->id) }}" class="btn btn-primary">Editar</a>
                         <form action="{{ route('producto.deactivate', $producto->id) }}" method="POST" style="display:inline-block;">
                             @csrf
-                            @method('DELETE')
                             <button type="submit" class="btn btn-danger">Desactivar</button>
                         </form>
                     </td>
@@ -42,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('principalAdmin') }}" class="btn btn-primary">Volver</a>
+        <a href="{{ route('principal-admin') }}" class="btn btn-primary">Volver</a>
     </div>
 </body>
 </html>

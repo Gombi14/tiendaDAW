@@ -13,7 +13,7 @@ Route::controller(CategoriaController::class)->group(function ()
     Route::get('/mostrarCategorias', 'index')->name('categoria.index');
     Route::get('/mostrarCategoriasDesactivadas', 'showDeactivated')->name('categoria.showDeactivated');
     Route::post('/insertarCategoria', 'store')->name('categoria.store');
-    Route::post('/updateCategoria', 'update')->name('categoria.update');
+    Route::post('/updateCategoria/{id}', 'update')->name('categoria.update');
     Route::post('/desactivarCategoria{id}', 'deactivate')->name('categoria.deactivate');
     Route::post('/activarCategoria{id}', 'activate')->name('categoria.activate');
 
@@ -26,12 +26,17 @@ Route::controller(ProductoController::class)->group(function ()
     Route::get('/mostrarProductos', 'index')->name('producto.index');
     Route::get('/mostrarProductosDesactivados', 'showDeactivated')->name('producto.showDeactivated');
     Route::post('/insertarProducto', 'store')->name('producto.store');
-    Route::post('/updateProducto', 'update')->name('producto.update');
-    Route::post('/desactivarProducto{id}', 'deactivate')->name('producto.deactivate');
-    Route::post('/activarProducto{id}', 'activate')->name('producto.activate');
+    Route::post('/updateProducto/{id}', 'update')->name('producto.update');
+    Route::post('/desactivarProducto/{id}', 'deactivate')->name('producto.deactivate');
+    Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
+});
+
+Route::controller(PedidoController::class)->group(function()
+    {
+    Route::get('/mostrarPedidos', 'index')->name('pedido.index');
 });
 
 
 Route::get('/', function () {
-    return view('PaginaPrincipalAdmin');
-})->name('principalAdmin');
+    return view('dashboard');
+})->name('principal-admin');

@@ -1,11 +1,9 @@
-@extends('layouts.app')
 
-@section('content')
 <div class="container">
     <h2>Editar Producto</h2>
-    <form action="{{ route('productos.update', $producto->id) }}" method="POST">
+    <form action="{{ route('producto.update', $producto->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        
         
         <div class="form-group">
             <label for="name">Nombre del Producto:</label>
@@ -26,8 +24,25 @@
             <label for="cantidad">Cantidad:</label>
             <input type="number" class="form-control" id="stock" name="stock" value="{{ $producto->stock }}" required>
         </div>
+        <div>
+            <label for="featured">Destacado:</label>
+            <input type="hidden" name="featured" value="0">
+            <input type="checkbox" id="featured" name="featured" value="1" {{ $producto->featured ? 'checked' : '' }}>
+        </div>
+        <div>
+            <label for="category_id">Categoría:</label>
+            <select id="category_id" name="category_id" required>
+                <option value="">Seleccione una categoría</option>
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}" {{ $producto->category_id == $categoria->id ? 'selected' : '' }}>
+                            {{ $categoria->name }}
+                        </option>
+                    @endforeach
+            </select>
+
+        
+        </div>
         
         <button type="submit" class="btn btn-primary">Actualizar Producto</button>
     </form>
 </div>
-@endsection

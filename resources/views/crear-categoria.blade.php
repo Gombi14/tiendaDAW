@@ -6,5 +6,6 @@
     </div>
     <div>
         <button type="submit">Crear Categoría</button>
+        <a href="{{ route('categoria.index') }}">Volver</a>
     </div>
 </form>

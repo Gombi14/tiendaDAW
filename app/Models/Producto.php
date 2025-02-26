@@ -15,6 +15,12 @@ class Producto extends Model
         'stock',
         'featured',
         'category_id',
-        'active',
+        'active'
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'category_id');
+    }
+
 }

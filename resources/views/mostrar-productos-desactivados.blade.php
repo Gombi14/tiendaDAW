@@ -16,6 +16,7 @@
                 <th>Descripción</th>
                 <th>Precio</th>
                 <th>Categoría</th>
+                <th>Destacado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -26,13 +27,17 @@
                 <td>{{ $producto->name }}</td>
                 <td>{{ $producto->description }}</td>
                 <td>{{ $producto->price }}</td>
-                <td>{{ $producto->category->name }}</td>
+                <td>{{ $producto->featured}}</td>
+                <td>{{ $producto->categoria->name }}</td>
                 <td>
-                    <a href="{{ route('producto.activate', $producto->id) }}" class="btn btn-success">Activar</a>
+                    <form action="{{ route('producto.activate', $producto->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-success">Activar</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <a href="producto.index" class="btn btn-primary">Volver a productos activos</a>
+    <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver a productos activos</a>
 </div>

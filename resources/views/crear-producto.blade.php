@@ -55,5 +55,6 @@
 
     <div>
         <button type="submit">Crear Producto</button>
+        <a href="{{ route('producto.index') }}">Volver</a>
     </div>
 </form>

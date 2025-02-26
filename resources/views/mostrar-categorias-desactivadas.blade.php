@@ -31,5 +31,5 @@
 </tbody>
     
 </table>
-<a href="/mostrarCategorias" class="btn btn-primary">Volver a categorias activas</a>
+<a href="{{ route('categoria.index') }}" class="btn btn-primary">Volver a categorias activas</a>
 </body>

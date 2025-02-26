@@ -14,13 +14,13 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::where('active', true)->get();
-        return view('MostrarCategorias', compact('categorias'));
+        return view('mostrar-categorias', compact('categorias'));
     }
 
     public function showDeactivated()
     {
         $categorias = Categoria::where('active', false)->get();
-        return view('MostrarCategoriasDesactivadas', compact('categorias'));
+        return view('mostrar-categorias-desactivadas', compact('categorias'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('CrearCategoria');
+        return view('crear-categoria');
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect()->route('principalAdmin')->with('success', 'Categoria creada correctamente');
+        return redirect()->route('principal-admin')->with('success', 'Categoria creada correctamente');
     }
 
     /**
@@ -63,8 +63,8 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        $categorias = Categoria::all();
-        return view(('EditarProducto'), compact('categorias'));
+        $categoria = Categoria::findOrFail($id);
+        return view(('editar-categoria'), compact('categoria'));
     }
 
     /**
@@ -72,7 +72,15 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $categoria = Categoria::findOrFail($id);
+        $categoria->name = $request->name;
+        $categoria->save();
+
+        return redirect()->route('categoria.index')->with('success', 'Categoria actualizada exitosamente');
     }
 
     /**
@@ -100,6 +108,6 @@ class CategoriaController extends Controller
 
         return redirect()->route('categoria.showDeactivated')->with('success', 'Producto desactivado exitosamente');
     }
-    }
+}
 
 
