@@ -33,6 +33,7 @@
     </div>
 
     <div>
+        <label for="featured">Destacado:</label>
         <input type="hidden" name="featured" value="0">
         <input type="checkbox" id="featured" name="featured" value="1" {{ old('featured') ? 'checked' : '' }}>
 

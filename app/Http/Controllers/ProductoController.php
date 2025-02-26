@@ -65,7 +65,7 @@ class ProductoController extends Controller
         
 
         // Redirect to a specific route with a success message
-        return redirect()->route('principal-admin')->with('success', 'Producto creado exitosamente');
+        return redirect()->route('producto.index')->with('success', 'Producto creado exitosamente');
     }
 
     /**

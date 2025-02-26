@@ -12,7 +12,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedidos = Pedido::all();
+        return view('mostrar-pedidos', compact('pedidos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -61,5 +62,14 @@ class PedidoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function changeStatus(string $id)
+    {
+        $pedido = Pedido::findOrFail($id);
+        $pedido->status = !$pedido->status;
+        $pedido->save();
+
+        return redirect()->route('pedido.index')->with('success', 'Estado del pedido actualizado exitosamente');
     }
 }
