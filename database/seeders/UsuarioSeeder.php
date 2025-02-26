@@ -17,6 +17,7 @@ class UsuarioSeeder extends Seeder
             [
                 'name' => 'comprador1',
                 'surname' => 'comprador1',
+                'password' => 'comprador1',
                 'phone' => '123456789',
                 'email' => 'comprador1@example.com',
                 'address' => 'calle falsa 123',
@@ -26,6 +27,7 @@ class UsuarioSeeder extends Seeder
             [
                 'name' => 'admin',
                 'surname' => 'admin',
+                'password' => 'admin',
                 'phone' => '987654321',
                 'email' => 'comprador2@example.com',
                 'address' => 'calle falsa 321',

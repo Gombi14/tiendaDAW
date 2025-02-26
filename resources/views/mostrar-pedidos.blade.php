@@ -24,23 +24,20 @@
             @foreach($pedidos as $pedido)
                 <tr>
                     <td>{{ $pedido->id }}</td>
-                    <td>{{ $pedido->comprador->nombre_cliente }}</td>
-                    <td>{{ $pedido->fecha_pedido }}</td>
+                    <td>{{ $pedido->usuario->name }}</td>
+                    <td>{{ $pedido->created_at }}</td>
                     <td>
                         @foreach($pedido->productos as $producto)
-                            <p>{{ $producto->nombre }} - Precio: {{ $producto->precio }} - Cantidad: {{ $producto->pivot->cantidad }}</p>
+                            <p>{{ $producto->name }} - Precio: {{ $producto->price }} - Cantidad: {{ $producto->pivot->quantity}}</p>
                         @endforeach
                     </td>
-                    <td>{{ $pedido->productos->sum('pivot.cantidad') }}</td>
-                    <td>{{ $pedido->productos->sum(function($producto) { return $producto->precio * $producto->pivot->cantidad; }) }}</td>
+                    <td>{{ $pedido->productos->sum('pivot.quantity') }}</td>
+                    <td>{{ $pedido->productos->sum(function($producto) { return $producto->price* $producto->pivot->quantity; }) }}</td>
                     <td>{{ $pedido->status }}</td>
-                    <td>{{ $pedido->fecha_entrega }}</td>
+                    <td>{{ $pedido->delivery_date}}</td>
                     <td>
-                        <a href="{{ route('pedidos.changeStatus', $pedido->id) }}">Editar</a>
-                        <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST">
-                            @csrf
-                            <button type="submit">Cambiar Estado</button>
-                        </form>
+                    <a href="{{ route('pedidos.changeStatus', $pedido->id) }}">Editar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
 
 
 
@@ -32,7 +33,7 @@ Route::controller(ProductoController::class)->group(function ()
 });
 
 Route::controller(PedidoController::class)->group(function()
-    {
+{
     Route::get('/mostrarPedidos', 'index')->name('pedido.index');
 });
 

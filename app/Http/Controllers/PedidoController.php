@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedido;
+use App\Models\Producto;
+use App\Models\Usuario;
 
 class PedidoController extends Controller
 {
@@ -12,7 +14,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::with('productos')->get();
+        $pedidos->load('user');
         return view('mostrar-pedidos', compact('pedidos'));
     }
 
