@@ -1,10 +1,14 @@
+@extends('app-dashboard')
+
+@section('title', 'Dashboard')
+
+@section('content')
 
 <div class="container">
     <h2>Editar Producto</h2>
     <form action="{{ route('producto.update', $producto->id) }}" method="POST">
         @csrf
-        
-        
+                
         <div class="form-group">
             <label for="name">Nombre del Producto:</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $producto->name }}" required>
@@ -17,7 +21,7 @@
         
         <div class="form-group">
             <label for="precio">Precio:</label>
-            <input type="number" class="form-control" id="price" name="price" value="{{ $producto->price }}" required>
+            <input type="number" id="price" name="price" step="0.1" value="{{ old('price') }}" required>
         </div>
         
         <div class="form-group">
@@ -33,16 +37,18 @@
             <label for="category_id">Categoría:</label>
             <select id="category_id" name="category_id" required>
                 <option value="">Seleccione una categoría</option>
-                    @foreach($categorias as $categoria)
-                        <option value="{{ $categoria->id }}" {{ $producto->category_id == $categoria->id ? 'selected' : '' }}>
-                            {{ $categoria->name }}
-                        </option>
-                    @endforeach
+                @foreach($categorias as $categoria)
+                <option value="{{ $categoria->id }}" {{ $producto->category_id == $categoria->id ? 'selected' : '' }}>
+                    {{ $categoria->name }}
+                </option>
+                @endforeach
             </select>
-
-        
+            
+            
         </div>
         
         <button type="submit" class="btn btn-primary">Actualizar Producto</button>
     </form>
 </div>
+
+@endsection

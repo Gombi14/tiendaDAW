@@ -3,25 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pedido;
-use App\Models\Producto;
-use App\Models\Usuario;
 
-class PedidoController extends Controller
+class AdministradorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-<<<<<<< Updated upstream
-        $pedidos = Pedido::with('productos')->get();
-        $pedidos->load('user');
-        return view('mostrar-pedidos', compact('pedidos'));
-=======
-        $pedidos = Pedido::all();
-        return view('pages.mostrar-pedidos', compact('pedidos'));
->>>>>>> Stashed changes
+        //
     }
 
     /**
@@ -29,7 +19,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -70,14 +60,5 @@ class PedidoController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function changeStatus(string $id)
-    {
-        $pedido = Pedido::findOrFail($id);
-        $pedido->status = !$pedido->status;
-        $pedido->save();
-
-        return redirect()->route('pedido.index')->with('success', 'Estado del pedido actualizado exitosamente');
     }
 }

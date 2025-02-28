@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
 
+
 class ProductoController extends Controller
 {
     /**
@@ -14,14 +15,34 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::where('active', true)->with('categoria')->get();
-        return view('mostrar-productos', compact('productos'));
+        return view('pages.mostrar-productos', compact('productos'));
     }
 
+    public function showPrincipal()
+    {
+        //mostrara los productos que en el campo featured sea 1 y esten activos
+        $productos = Producto::where('active', true)->where('featured', true)->with('categoria')->get();
+        return view('pages.principal', compact('productos'));
+    }
+
+    public function getAll(Request $request)
+    {
+        $filter = $request->input('filter');
+        $productos = Producto::where('active', true);
+
+        if ($filter) {
+            $productos->where('name', 'like', '%' . $filter . '%');
+        }
+
+        $productos = $productos->with('categoria')->get();
+
+        return response()->json($productos);
+    }
 
     public function showDeactivated()
     {
         $productos = Producto::where('active', false)->with('categoria')->get();
-        return view('mostrar-productos-desactivados', compact('productos'));
+        return view('pages.mostrar-productos-desactivados', compact('productos'));
     }
 
     /**
@@ -30,7 +51,7 @@ class ProductoController extends Controller
     public function create()
     {   
         $categorias = Categoria::all();
-        return view(('crear-producto'), compact('categorias'));
+        return view(('pages.crear-producto'), compact('categorias'));
     }
 
     /**
@@ -83,7 +104,7 @@ class ProductoController extends Controller
         {
             $producto = Producto::findOrFail($id);
             $categorias = Categoria::all();
-            return view('editar-producto', compact('producto', 'categorias'));
+            return view('pages.editar-producto', compact('producto', 'categorias'));
         }
         
     

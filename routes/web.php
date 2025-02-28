@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\PedidoController;
 
 
 
@@ -22,6 +21,7 @@ Route::controller(CategoriaController::class)->group(function ()
 
 Route::controller(ProductoController::class)->group(function ()
 {
+    Route::post('/getProductos', 'getAll')->name('producto.getAll');
     Route::get('/crearProducto', 'create')->name('producto.create');
     Route::get('/editarProducto/{id}', 'edit')->name('producto.edit');
     Route::get('/mostrarProductos', 'index')->name('producto.index');
@@ -30,14 +30,19 @@ Route::controller(ProductoController::class)->group(function ()
     Route::post('/updateProducto/{id}', 'update')->name('producto.update');
     Route::post('/desactivarProducto/{id}', 'deactivate')->name('producto.deactivate');
     Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
+    Route::get('/', 'showPrincipal')->name('producto.showPrincipal');
 });
 
 Route::controller(PedidoController::class)->group(function()
-{
+    {
     Route::get('/mostrarPedidos', 'index')->name('pedido.index');
 });
 
 
-Route::get('/', function () {
-    return view('dashboard');
+Route::get('/dashboard', function () {
+    return view('pages.dashboard');
 })->name('principal-admin');
+
+route::get('/tienda', function(){
+    return view('pages.productos');
+})->name('tienda');

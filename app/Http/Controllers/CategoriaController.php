@@ -14,13 +14,13 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::where('active', true)->get();
-        return view('mostrar-categorias', compact('categorias'));
+        return view('pages.mostrar-categorias', compact('categorias'));
     }
 
     public function showDeactivated()
     {
         $categorias = Categoria::where('active', false)->get();
-        return view('mostrar-categorias-desactivadas', compact('categorias'));
+        return view('pages.mostrar-categorias-desactivadas', compact('categorias'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('crear-categoria');
+        return view('pages.crear-categoria');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoriaController extends Controller
     public function edit(string $id)
     {
         $categoria = Categoria::findOrFail($id);
-        return view(('editar-categoria'), compact('categoria'));
+        return view(('pages.editar-categoria'), compact('categoria'));
     }
 
     /**
