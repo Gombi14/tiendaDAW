@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
-
+use Illuminate\Support\Facades\Log;
 
 class ProductoController extends Controller
 {
@@ -28,14 +28,19 @@ class ProductoController extends Controller
     public function getAll(Request $request)
     {
         $filter = $request->input('filter');
+        $categoria = $request->input('categoria');
         $productos = Producto::where('active', true);
-
+    
+        // Filtrar también por categoría si se envía el parámetro
+        if ($categoria) {
+            $productos->where('category_id', $request->input('categoria'));
+        }
         if ($filter) {
             $productos->where('name', 'like', '%' . $filter . '%');
         }
-
+    
         $productos = $productos->with('categoria')->get();
-
+    
         return response()->json($productos);
     }
 

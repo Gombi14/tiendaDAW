@@ -17,6 +17,12 @@ class CategoriaController extends Controller
         return view('pages.mostrar-categorias', compact('categorias'));
     }
 
+    public function tienda()
+    {
+        $categorias = Categoria::where('active', true)->get();
+        return view('pages.productos', compact('categorias'));
+    }
+
     public function showDeactivated()
     {
         $categorias = Categoria::where('active', false)->get();

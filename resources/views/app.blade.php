@@ -13,7 +13,7 @@
     @include('components.header')
 
     <main>
-        <div class="flex-1 p-6 min-h-full">
+        <div class="flex-1 p-6 min-h-screen" style="background-image:url('{{ asset('img/1.png') }}');background-size: cover; background-position: center;">
             <div class="mt-20"></div>
             @yield('content')
         </div>

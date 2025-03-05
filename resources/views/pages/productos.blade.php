@@ -8,12 +8,15 @@
 <h1 class="text-3xl mb-6">Productos</h1>
 
 <input type="text" id="search" placeholder="Buscar producto" class="p-2 rounded-lg border border-gray-300 mb-4">
-
+<select class="p-2 rounded-lg bg-white min-h-[42px] border border-gray-300 mb-4" name="categorias" id="categorias-select">
+    <option value="">Todas las categorías</option>
+    @foreach($categorias as $categoria)
+        <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+    @endforeach
+</select>
+<button id="apply-filters" class="rounded-lg bg-yellow-400 p-2 text-white hover:bg-yellow-300">Aplicar filtros</button>
 <container id="productos" class="flex flex-wrap gap-4">
-    <div class="flex flex-col bg-gray-900 gap-4 text-white p-4 rounded-lg" style="min-width: 300px;">
-        <h2>Nombre producto</h2>
-        <h2 class="text-right">1000€</h2>
-    </div>
+   
 </container>
 
 @vite(['resources/js/productos.js'])

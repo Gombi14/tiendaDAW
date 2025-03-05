@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductoController;
 
 Route::controller(CategoriaController::class)->group(function ()
 {
+    Route::get('/tienda', 'tienda')->name('categoria.tienda');
     Route::get('/crearCategoria', 'create')->name('categoria.create');
     Route::get('/editarCategoria/{id}', 'edit')->name('categoria.edit');
     Route::get('/mostrarCategorias', 'index')->name('categoria.index');
@@ -43,6 +44,6 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('principal-admin');
 
-route::get('/tienda', function(){
-    return view('pages.productos');
-})->name('tienda');
+// route::get('/tienda', function(){
+//     return view('pages.productos');
+// })->name('tienda');

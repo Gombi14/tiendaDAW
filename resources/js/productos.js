@@ -5,35 +5,52 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter') {
             e.preventDefault() 
             let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
+            let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
             console.log(filter)
-            getProductos(filter)
+            getProductos(filter, categoria)
         }
+    })
+    document.getElementById('categorias-select').addEventListener('change', (e) => {
+        let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
+        let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
+        console.log(filter)
+        getProductos(filter, categoria)
+    })
+    document.getElementById('apply-filters').addEventListener('click', (e) => {
+        let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
+        let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
+        console.log(filter)
+        getProductos(filter, categoria)
     })
 })
 
-function getProductos(filter = '') {
-    let htmlCode = '';
+function getProductos(filter = '', categoria = '') {
+    let htmlCode = ''
     fetch('/getProductos', { // La URL debe coincidir con la definida en routes/web.php
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
-        body: JSON.stringify({ filter: filter })
+        body: JSON.stringify({ 
+            filter: filter,
+            categoria: categoria
+        })
     })
     .then(response => response.json())
-    .then(data => {
-        console.log('data');
-        console.log(data);
-        data.forEach(element => {
+    .then(response => {
+        console.log('response')
+        console.log(response)
+        response.forEach(element => {
             htmlCode += `
-                <div class="flex flex-col w-96 bg-gray-900 text-white p-4 rounded-lg">
-                    <h2>${element.name}</h2>
+                <div class="card">
+                    <h2 class="text-2xl">${element.name}</h2>
+                    <h2 class="text-lg">${element.categoria.name}</h2>
                     <h2 class="text-right">${element.price}</h2>
                 </div>
-            `;
-        });
-        document.getElementById('productos').innerHTML = htmlCode;
+            `
+        })
+        document.getElementById('productos').innerHTML = htmlCode
     })
-    .catch(error => console.error(error));
+    .catch(error => console.error(error))
 }

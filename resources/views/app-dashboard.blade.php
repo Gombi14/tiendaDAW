@@ -15,7 +15,9 @@
         @include('components.dashboard-side')
         <div class="flex-1 p-6 md:ml-64 text-white min-h-full" style="background-color:#565656">
             <div class="mt-20"></div>
-            @yield('content')
+            <div class="min-h-screen bg-dashboard">
+                @yield('content')
+            </div>
         </div>
     </main>
 </body>
