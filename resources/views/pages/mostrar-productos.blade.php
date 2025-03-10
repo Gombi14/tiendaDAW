@@ -16,6 +16,14 @@
         </button>
     </div>
 </div>
+@if ($productos->isEmpty())
+        <tr>
+            <td colspan="3" class="text-center">No hay productos para mostrar.</td><br>
+        </tr>
+        <tr>
+            <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver a productos activos</a>
+        </tr>
+    @elseif ($productos->isNotEmpty())
 <div class="flex flex-col justify-center mt-5">
     <table class="table table-bordered">
         <thead>
@@ -27,6 +35,7 @@
                 <th>Stock</th>
                 <th>Destacado</th>
                 <th>Categoria</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -46,12 +55,15 @@
                     @endif
                 </td>
                 <td>{{ $producto->categoria->name}}</td>
+                <td>{{ $producto->image}}</td>
                 <td class="p-3">
                     <div class="flex gap-3 justify-center">
                         <div class="w-1/2">
-                            <button class="bg-yellow-500 p-3 rounded-lg w-full text-white">
-                                <a href="{{ route('producto.edit', $producto->id) }}">Editar</a>
-                            </button>
+                            <a href="{{ route('producto.edit', $producto->id) }}">
+                                <button class="bg-yellow-500 p-3 rounded-lg w-full text-white">
+                                    Editar
+                                </button>
+                            </a>
                         </div>
                         <form  class="w-1/2" action="{{ route('producto.deactivate', $producto->id) }}" method="POST">
                             <div>
@@ -59,12 +71,16 @@
                                 <button type="submit" class="bg-red-600 w-full p-3 rounded-lg text-white">Desactivar</button>
                             </div>
                         </form>
-                    </div>
+        @if ($productos->isEmpty())
+        <tr>
+            <td colspan="3" class="text-center">No hay productos para mostrar.</td>
+        </tr>
+        @endif
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
-
+@endif
 @endsection

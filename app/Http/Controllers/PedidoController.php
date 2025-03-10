@@ -11,17 +11,11 @@ class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    */
     public function index()
     {
-<<<<<<< Updated upstream
-        $pedidos = Pedido::with('productos')->get();
-        $pedidos->load('user');
-        return view('mostrar-pedidos', compact('pedidos'));
-=======
-        $pedidos = Pedido::all();
-        return view('pages.mostrar-pedidos', compact('pedidos'));
->>>>>>> Stashed changes
+    $pedidos = Pedido::with('usuarios', 'productos')->get();
+    return view('pages.mostrar-pedidos', compact('pedidos'));
     }
 
     /**
@@ -75,7 +69,14 @@ class PedidoController extends Controller
     public function changeStatus(string $id)
     {
         $pedido = Pedido::findOrFail($id);
-        $pedido->status = !$pedido->status;
+        if($pedido->status == 0) {
+            $pedido->status = 1;
+            $pedido->delivery_date = now();
+        } else {
+            $pedido->status = '0';
+            $pedido->delivery_date = null;
+        }
+        
         $pedido->save();
 
         return redirect()->route('pedido.index')->with('success', 'Estado del pedido actualizado exitosamente');

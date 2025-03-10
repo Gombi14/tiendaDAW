@@ -6,6 +6,14 @@
 
 <div class="container">
     <h1>Productos Desactivados</h1>
+    @if ($productos->isEmpty())
+        <tr>
+            <td colspan="3" class="text-center">No hay productos para mostrar.</td><br>
+        </tr>
+        <tr>
+            <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver a productos activos</a>
+        </tr>
+    @elseif ($productos->isNotEmpty())
     <table class="table table-striped">
         <thead>
             <tr>
@@ -39,5 +47,7 @@
     </table>
     <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver a productos activos</a>
 </div>
+@endif
+
 
 @endsection

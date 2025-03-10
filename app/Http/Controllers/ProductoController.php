@@ -72,6 +72,7 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'featured' => 'sometimes|boolean', // No será obligatorio
+            'image' => 'required|string',
             'category_id' => 'required|integer',
             
             
@@ -85,6 +86,7 @@ class ProductoController extends Controller
         $producto->price = $request->price;
         $producto->stock = $request->stock;
         $producto->featured = $request->has('featured'); // Devuelve true o false
+        $producto->image = $request->file('image')->store('public/img');
         $producto->category_id = $request->category_id;
         
         $producto->save();
@@ -125,6 +127,7 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'featured' => 'sometimes|boolean', // No será obligatorio
+            'image' => 'required|string',
             'category_id' => 'required|integer',
 
         ]);
@@ -134,6 +137,7 @@ class ProductoController extends Controller
         $producto->price = $request->price;
         $producto->stock = $request->stock;
         $producto->featured = $request->has('featured'); // Devuelve true o false
+        $producto->image = $request->file('image')->store('public/img');
         $producto->category_id = $request->category_id;
         
         $producto->save();

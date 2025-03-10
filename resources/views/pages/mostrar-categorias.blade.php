@@ -15,6 +15,14 @@
         </button>
     </div>
 </div>
+@if ($categorias->isEmpty())
+        <tr>
+            <td colspan="3" class="text-center">No hay categorias para mostrar.</td><br>
+        </tr>
+        <tr>
+            <a href="{{ route('categoria.index') }}" class="btn btn-primary">Volver a categorias activas</a>
+        </tr>
+@elseif ($categorias->isNotEmpty())
 <div class="container mt-5">
     <table class="border border-collapse border-gray-300 w-full text-left">
         <thead class="bg-gray-200">
@@ -45,4 +53,5 @@
         </tbody>
     </table>
 </div>
+@endif
 @endsection

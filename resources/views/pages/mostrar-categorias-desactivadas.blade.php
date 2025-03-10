@@ -3,7 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
+@if ($categorias->isEmpty())
+        <tr>
+            <td colspan="3" class="text-center">No hay categorias para mostrar.</td><br>
+        </tr>
+        <tr>
+            <a href="{{ route('categoria.index') }}" class="btn btn-primary">Volver a categorias activas</a>
+        </tr>
+    @elseif ($categorias->isNotEmpty())
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
@@ -29,5 +36,5 @@
     
 </table>
 <a href="{{ route('categoria.index') }}" class="btn btn-primary">Volver a categorias activas</a>
-
+@endif
 @endsection

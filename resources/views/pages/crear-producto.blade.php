@@ -6,11 +6,11 @@
 
 
 
-<form action="{{ route('producto.store') }}" method="POST">
+<form action="{{ route('producto.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+        <input class="text-black" type="text" id="name" name="name" value="{{ old('name') }}" required>
         @error('name')
         <p style="color: red;">{{ $message }}</p>
         @enderror
@@ -58,6 +58,13 @@
             @endforeach
         </select>
         @error('category_id')
+        <p style="color: red;">{{ $message }}</p>
+        @enderror
+    </div>
+    <div>
+        <label for="image">Imagen:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        @error('image')
         <p style="color: red;">{{ $message }}</p>
         @enderror
     </div>

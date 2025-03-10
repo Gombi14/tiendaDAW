@@ -6,7 +6,7 @@
 
 <div class="container">
     <h2>Editar Producto</h2>
-    <form action="{{ route('producto.update', $producto->id) }}" method="POST">
+    <form action="{{ route('producto.update', $producto->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
                 
         <div class="form-group">
@@ -45,6 +45,10 @@
             </select>
             
             
+        </div>
+        <div class="form-group">
+            <label for="image">Imagen:</label>
+            <input type="text" class="form-control" id="image" name="image" value="{{ $producto->image }}" required>
         </div>
         
         <button type="submit" class="btn btn-primary">Actualizar Producto</button>
