@@ -33,6 +33,7 @@ Route::controller(ProductoController::class)->group(function ()
     Route::post('/desactivarProducto/{id}', 'deactivate')->name('producto.deactivate');
     Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
     Route::get('/', 'showPrincipal')->name('producto.showPrincipal');
+    Route::get('/paintImg', 'paintImg')->name('producto.paint');
 });
 
 Route::controller(PedidoController::class)->group(function()
