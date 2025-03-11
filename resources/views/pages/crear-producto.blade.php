@@ -18,7 +18,7 @@
     
     <div>
         <label for="description">Descripción:</label>
-        <textarea id="description" name="description" required>{{ old('description') }}</textarea>
+        <textarea class="text-black" id="description" name="description" required>{{ old('description') }}</textarea>
         @error('description')
         <p style="color: red;">{{ $message }}</p>
         @enderror
@@ -26,7 +26,7 @@
     
     <div>
         <label for="price">Precio:</label>
-        <input type="number" id="price" name="price" step="0.1" value="{{ old('price') }}" required>
+        <input class="text-black" type="number" id="price" name="price" step="0.1" value="{{ old('price') }}" required>
         @error('price')
         <p style="color: red;">{{ $message }}</p>
         @enderror
@@ -34,7 +34,7 @@
     
     <div>
         <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock" value="{{ old('stock') }}" required>
+        <input class="text-black" type="number" id="stock" name="stock" value="{{ old('stock') }}" required>
         @error('stock')
         <p style="color: red;">{{ $message }}</p>
         @enderror
@@ -49,7 +49,7 @@
     
     <div>
         <label for="category_id">Categoría:</label>
-        <select id="category_id" name="category_id" required>
+        <select class="text-black" id="category_id" name="category_id" required>
             <option value="">Seleccione una categoría</option>
             @foreach($categorias as $categoria)
             <option value="{{ $categoria->id }}" {{ old('category_id') == $categoria->id ? 'selected' : '' }}>
@@ -63,7 +63,7 @@
     </div>
     <div>
         <label for="image">Imagen:</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
+        <input class="text-black" type="file" id="image" name="image" accept="image/*" required>
         @error('image')
         <p style="color: red;">{{ $message }}</p>
         @enderror

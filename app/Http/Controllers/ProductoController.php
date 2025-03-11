@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
@@ -72,7 +74,7 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'featured' => 'sometimes|boolean', // No será obligatorio
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Valida que sea una imagen
             'category_id' => 'required|integer',
             
             
@@ -86,8 +88,13 @@ class ProductoController extends Controller
         $producto->price = $request->price;
         $producto->stock = $request->stock;
         $producto->featured = $request->has('featured'); // Devuelve true o false
-        $producto->image = $request->file('image')->store('public/img');
         $producto->category_id = $request->category_id;
+
+        $image = $request->file('image');
+        if ($image) {
+            $nombre = $image->getClientOriginalName();
+            Storage::disk('images')->put($nombre, File::get($image));
+        }
         
         $producto->save();
         
@@ -127,7 +134,7 @@ class ProductoController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'featured' => 'sometimes|boolean', // No será obligatorio
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Valida que sea una imagen
             'category_id' => 'required|integer',
 
         ]);
@@ -137,8 +144,14 @@ class ProductoController extends Controller
         $producto->price = $request->price;
         $producto->stock = $request->stock;
         $producto->featured = $request->has('featured'); // Devuelve true o false
-        $producto->image = $request->file('image')->store('public/img');
         $producto->category_id = $request->category_id;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $nombre = $image->getClientOriginalName();
+            $path = $image->storeAs('app/public/images', $nombre, 'public');
+            $producto->image = Storage::url($path);
+        }
         
         $producto->save();
 

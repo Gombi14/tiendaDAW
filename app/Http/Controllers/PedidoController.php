@@ -69,11 +69,11 @@ class PedidoController extends Controller
     public function changeStatus(string $id)
     {
         $pedido = Pedido::findOrFail($id);
-        if($pedido->status == 0) {
+        if($pedido->status == 0) { // 0 = Pendiente de envío, 1 = Enviado
             $pedido->status = 1;
-            $pedido->delivery_date = now();
+            $pedido->delivery_date = now()->addhours(1);
         } else {
-            $pedido->status = '0';
+            $pedido->status = 0;
             $pedido->delivery_date = null;
         }
         

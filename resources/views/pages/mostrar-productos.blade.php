@@ -55,7 +55,10 @@
                     @endif
                 </td>
                 <td>{{ $producto->categoria->name}}</td>
-                <td>{{ $producto->image}}</td>
+                <td>
+                    <img src="{{ asset($producto->image) }}" alt="No se ve una mierda"  style="width: 100px; height: auto;">
+                </td>
+                
                 <td class="p-3">
                     <div class="flex gap-3 justify-center">
                         <div class="w-1/2">

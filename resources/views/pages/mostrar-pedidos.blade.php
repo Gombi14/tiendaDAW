@@ -3,11 +3,7 @@
 @section('title', 'Pedidos')
 
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Mostrar Pedidos</title>
-</head>
+
 <body>
     <h1>Lista de Pedidos</h1>
     <table border="1">
@@ -47,7 +43,7 @@
                         @endforeach
                     </td>
                     <td>{{ $pedido->productos->sum(function($producto) { return $producto->price* $producto->pivot->quantity; }) }}</td>
-                    <td>{{ $pedido->delivery_date ?? 'Mondongo'}}</td>
+                    <td>{{ $pedido->delivery_date ?? 'Sin Fecha de envío'}}</td>
                     <td>{{ $pedido->status === 0 ? 'Pendiente de envío' : ($pedido->status === 1 ? 'Enviado' : 'No asignado') }}</td>
                     <td>
                     <a href="{{ route('pedido.changeStatus', $pedido->id) }}">Cambiar Estado</a>
@@ -56,7 +52,6 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('principal-admin') }}">Volver</a>
 </body>
 </html>
 @endsection
