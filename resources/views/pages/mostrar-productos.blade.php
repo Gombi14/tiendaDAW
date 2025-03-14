@@ -74,6 +74,12 @@
                                 <button type="submit" class="bg-red-600 w-full p-3 rounded-lg text-white">Desactivar</button>
                             </div>
                         </form>
+                        <div>
+                            <a href="{{ route('producto.paint', $producto->id) }}">
+                                <button class="bg-blue-300 p-3 rounded-lg text-white">
+                                    Editar Imagen
+                                </button>
+                            </a>
         @if ($productos->isEmpty())
         <tr>
             <td colspan="3" class="text-center">No hay productos para mostrar.</td>

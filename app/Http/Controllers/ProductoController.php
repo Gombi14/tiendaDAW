@@ -95,7 +95,7 @@ class ProductoController extends Controller
         $producto->featured = $request->has('featured'); // Devuelve true o false
         $producto->category_id = $request->category_id;
 
-        if ($request->hasFile('image')) {
+       if ($request->hasFile('image')) {
             $image = $request->file('image');
             $nombre = $image->getClientOriginalName();
             $path = $image->storeAs('app/public/images', $nombre, 'public');
@@ -109,6 +109,7 @@ class ProductoController extends Controller
         // Redirect to a specific route with a success message
         return redirect()->route('producto.index')->with('success', 'Producto creado exitosamente');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -182,6 +183,11 @@ class ProductoController extends Controller
         $producto->save();
 
         return redirect()->route('producto.showDeactivated')->with('success', 'Producto activado exitosamente');
+    }
+
+    public function paintImg()
+    {
+        return view('pages.editar-imagen');
     }
 }
 
