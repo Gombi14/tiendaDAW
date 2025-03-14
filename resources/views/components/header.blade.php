@@ -7,6 +7,7 @@
         <nav class="flex items-center">
             <ul class="flex gap-3 ">
                 <li class="hover:underline"><a href="/tienda">Inicio</a></li>
+                <li class="hover:underline"><a href="/carrito">Carrito</a></li>
                 <li class="hover:underline"><a href="/dashboard">Dashboard</a></li>
                 @if (!Auth::check())
                     <li class="hover:underline"><a href="/login">Inicia Sessión</a></li>
