@@ -14,8 +14,8 @@ class PedidoController extends Controller
     */
     public function index()
     {
-    $pedidos = Pedido::with('usuarios', 'productos')->get();
-    return view('pages.mostrar-pedidos', compact('pedidos'));
+        $pedidos = Pedido::with('usuarios', 'productos')->get();
+        return view('pages.mostrar-pedidos', compact('pedidos'));
     }
 
     /**

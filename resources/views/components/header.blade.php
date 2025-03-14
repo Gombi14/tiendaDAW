@@ -2,12 +2,17 @@
     <div class="flex justify-between mt-[6px]">
         <div class="flex">
             <img src="{{ asset('img/logo.png') }}" alt="" style="max-height: 60px;">
-            <h1 class="text-3xl flex items-center">Hola mundo</h1>
+            <h1 class="text-3xl flex items-center">Tienda</h1>
         </div>
         <nav class="flex items-center">
             <ul class="flex gap-3 ">
                 <li class="hover:underline"><a href="/tienda">Inicio</a></li>
                 <li class="hover:underline"><a href="/dashboard">Dashboard</a></li>
+                @if (!Auth::check())
+                    <li class="hover:underline"><a href="/login">Inicia Sessión</a></li>
+                @else
+                    <li class="hover:underline"><a href="/logout">Cerrar Sessión</a></li>
+                @endif
             </ul>
         </nav>
     </div>

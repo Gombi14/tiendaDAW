@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
-
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarritoContoller;
 
 Route::controller(CategoriaController::class)->group(function ()
 {
@@ -33,6 +33,7 @@ Route::controller(ProductoController::class)->group(function ()
     Route::post('/desactivarProducto/{id}', 'deactivate')->name('producto.deactivate');
     Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
     Route::get('/', 'showPrincipal')->name('producto.showPrincipal');
+    Route::get('/producto/{id}', 'show')->name('producto.show');
 });
 
 Route::controller(PedidoController::class)->group(function()
@@ -41,11 +42,20 @@ Route::controller(PedidoController::class)->group(function()
     Route::get('/cambiarEstadoPedido/{id}', 'changeStatus')->name('pedido.changeStatus');
 });
 
+Route::controller(AuthController::class)->group(function()
+{
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login')->name('login.post');
+    Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::controller(CarritoContoller::class)->group(function()
+{
+    Route::get('/carrito', 'index')->name('showCarrito');
+    Route::post('/addToCart', 'addToCart')->name('addToCart');
+});
 
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('principal-admin');
 
-// route::get('/tienda', function(){
-//     return view('pages.productos');
-// })->name('tienda');

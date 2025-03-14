@@ -43,11 +43,14 @@ function getProductos(filter = '', categoria = '') {
         console.log(response)
         response.forEach(element => {
             htmlCode += `
-                <div class="card">
-                    <h2 class="text-2xl">${element.name}</h2>
-                    <h2 class="text-lg">${element.categoria.name}</h2>
-                    <h2 class="text-right">${element.price}</h2>
-                </div>
+                <a class="card" href="/producto/${element.id}">
+                    <div class="">
+                        <img class="w-[320px] rounded-lg" src="${element.image}" alt="${element.name}" class="rounded-lg mb-3">
+                        <h2 class="text-2xl">${element.name}</h2>
+                        <h2 class="text-lg">${element.categoria.name}</h2>
+                        <h2 class="text-right">${element.price}€</h2>
+                    </div>
+                </a>
             `
         })
         document.getElementById('productos').innerHTML = htmlCode
