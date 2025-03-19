@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -14,6 +17,12 @@ class UsuarioController extends Controller
         //
     }
 
+    public function showRegister(){
+        if (Auth::check()) {
+            return redirect('/');
+        }
+        return view('register');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -27,7 +36,27 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (empty($request->nombre) || empty($request->contraseña) || empty($request->apellido) || empty($request->email)) {
+            return back()->withErrors(['obligatorios'=>'Todos los campos son obligatorios']);
+        }
+        $nombre = $request->nombre;
+        $contraseña = Hash::make($request->contraseña);
+        $apellido = $request->apellido;
+        $email = $request->email;
+
+        if (Usuario::where('email', $request->email)->exists()) {
+            return back()->withErrors(['email' => 'El email está en uso']);
+        }
+        Usuario::create([
+            'name' => $nombre,
+            'password' => $contraseña,
+            'surname' => $apellido,
+            'phone' => null,
+            'email' => $email,
+            'address' => null,
+            'role' => 'comprador'
+        ]);
+        return redirect('/');
     }
 
     /**

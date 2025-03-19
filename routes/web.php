@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoContoller;
+use App\Http\Controllers\UsuarioController;
 
 Route::controller(CategoriaController::class)->group(function ()
 {
@@ -54,9 +55,16 @@ Route::controller(CarritoContoller::class)->group(function()
 {
     Route::get('/carrito', 'index')->name('showCarrito');
     Route::post('/addToCart', 'addToCart')->name('addToCart');
+    Route::post('/update-cart', 'updateCart')->name('updateCart');
+    Route::get('/delete-cart-item/{id}', 'deleteCartItem')->name('deleteCartItem');
+});
+
+Route::controller(UsuarioController::class)->group(function()
+{
+    Route::get('/register', 'showRegister')->name('showRegisterForm');
+    Route::post('/register', 'store')->name('newUser');
 });
 
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('principal-admin');
-

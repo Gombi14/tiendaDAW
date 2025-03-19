@@ -86,10 +86,73 @@ class CarritoContoller extends Controller
             }
     
         }
-        Log::debug('Cart Details:', $cartDetails);
         return view('pages.carrito', compact('cartDetails'));
     }
 
+    public function updateCart(Request $request){
+        $productId = $request->id;
+        $quantity = $request->cantidad;
+
+        if(Auth::check()){
+            $cartItem = Carrito::where('user_id', Auth::id())
+                ->where('product_id', $productId)
+                ->first();
+            
+            $cartItem->quantity = $quantity;
+            $cartItem->save();
+    
+            return response()->json(['success' => true]);
+        }else{
+            $cart = Cookie::get('cart');
+            $cart = $cart ? json_decode($cart, true) : [];
+            
+            $updated = false;
+            foreach ($cart as &$item) { 
+                if ($item['product_id'] == $productId) {
+                    $item['quantity'] = $quantity; 
+                    $updated = true;
+                    break;
+                }
+            }
+            
+            if (!$updated) {
+                return response()->json(['success' => false, 'message' => 'Item not found in cart'], 404);
+            }
+
+            Cookie::queue('cart', json_encode($cart), 2628000);
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false], 400);
+    }
+
+    public function deleteCartItem(Request $request, $productId){
+        if (Auth::check()) {
+            // Buscar el producto en el carrito del usuario autenticado
+            $cartItem = Carrito::where('user_id', Auth::id())
+                ->where('product_id', $productId)
+                ->first();
+    
+            if ($cartItem) {
+                $cartItem->delete();
+                return redirect()->back()->with('success', 'Producto eliminado del carrito.');
+            } else {
+                return redirect()->back()->with('error', 'El producto no fue encontrado.');
+            }
+        } else {
+            // Si el usuario no está autenticado, eliminar del carrito en cookies
+            $cart = Cookie::get('cart');
+            $cart = $cart ? json_decode($cart, true) : [];
+    
+            $cart = array_filter($cart, function ($item) use ($productId) {
+                return $item['product_id'] != $productId;
+            });
+    
+            // Guardar la cookie actualizada
+            Cookie::queue(Cookie::make('cart', json_encode(array_values($cart)), 60 * 24 * 7));
+    
+            return redirect()->back()->with('success', 'Producto eliminado del carrito.');
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -172,7 +235,7 @@ class CarritoContoller extends Controller
             $found = false;
             foreach ($cart as &$item) { 
                 if ($item['product_id'] == $productId) {
-                    $item['quantity'] += $quantity; // Sumar cantidad si ya existe
+                    $item['quantity'] += $quantity; 
                     $found = true;
                     break;
                 }
@@ -184,9 +247,8 @@ class CarritoContoller extends Controller
                     'quantity' => $quantity
                 ];
             }
-            Cookie::queue('cart', json_encode($cart), 2628000); // Cookie válida por 5 años    
-            return redirect()->route('categoria.tienda');
-            
+            Cookie::queue('cart', json_encode($cart), 2628000);
         }
+        return redirect()->route('categoria.tienda');
     }
 }

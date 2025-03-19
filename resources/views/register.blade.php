@@ -16,17 +16,21 @@
                 </div>
                 
                 <div class="w-1/3  bg-[#0D0522] rounded-r-3xl h-full flex flex-col justify-center p-6">
-                    <h1 class="title">Inicio de sesión</h1>
-                    <form action="{{ route('login.post') }}" method="POST">
+                    <h1 class="title">Registro</h1>
+                    <form action="{{ route('newUser') }}" method="POST">
                         @csrf
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>               
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full"><br>
+                        <input type="text" name="email" id="email" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
                         <label for="contraseña">Contraseña</label>
-                        <input type="password" name="password" id="password" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full"><br>
-                        <button class="rounded-lg text-2xl mb-3 bg-[#444444] border-[1px] border-separate border-[#73FF50] p-4 text-[#73ff50] text-white w-full">Iniciar sessión</button>
+                        <input type="password" name="password" id="password" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
+                        <button class="rounded-lg text-2xl mb-3 bg-[#444444] border-[1px] border-separate border-[#73FF50] p-4 text-white w-full">Registrarse</button>
                     </form>
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="text-red-500">
                         <ul class="mb-0">
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -34,7 +38,7 @@
                         </ul>
                     </div>
                     @endif
-                    <a href="/register" class="hover:underline">No tienes cuenta? Registrate</a>
+                    <a href="/login" class="hover:underline">Ya tienes una cuenta? Inicia Sesion</a>
                     <a href="/" class="hover:underline">Volver</a>
                 </div>    
             </div>

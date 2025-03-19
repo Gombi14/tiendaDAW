@@ -6,20 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault() 
             let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
             let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
-            console.log(filter)
             getProductos(filter, categoria)
         }
     })
     document.getElementById('categorias-select').addEventListener('change', (e) => {
         let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
         let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
-        console.log(filter)
         getProductos(filter, categoria)
     })
     document.getElementById('apply-filters').addEventListener('click', (e) => {
         let filter = document.getElementById('search').value // Obtiene el valor del campo de búsqueda
         let categoria = document.getElementById('categorias-select').value // Obtiene el valor del campo de categoría
-        console.log(filter)
         getProductos(filter, categoria)
     })
 })
@@ -39,8 +36,6 @@ function getProductos(filter = '', categoria = '') {
     })
     .then(response => response.json())
     .then(response => {
-        console.log('response')
-        console.log(response)
         response.forEach(element => {
             htmlCode += `
                 <a class="card" href="/producto/${element.id}">
