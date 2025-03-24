@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Usuario;
@@ -16,8 +20,8 @@ class PedidoController extends Controller
     */
     public function index()
     {
-    $pedidos = Pedido::with('usuarios', 'productos')->get();
-    return view('pages.mostrar-pedidos', compact('pedidos'));
+        $pedidos = Pedido::with('usuarios', 'productos')->get();
+        return view('pages.mostrar-pedidos', compact('pedidos'));
     }
 
     /**

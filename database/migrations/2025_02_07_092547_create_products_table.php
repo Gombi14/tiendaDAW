@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('photo')->nullable();
             $table->float('price');
             $table->integer('stock');
             $table->boolean('featured')->default(false);

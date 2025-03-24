@@ -14,12 +14,13 @@ class ProductosSeeder extends Seeder
     {
       DB::table('products')->insert([
         [
-          'name' => 'Camiseta',
+          'name' => 'Llavero',
           'description' => 'Camiseta de algodon',
           'price' => 10,
           'stock' => 100,
           'featured' => true,
           'category_id' => 1,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
@@ -30,6 +31,7 @@ class ProductosSeeder extends Seeder
           'stock' => 50,
           'featured' => true,
           'category_id' => 2,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
@@ -40,76 +42,84 @@ class ProductosSeeder extends Seeder
           'stock' => 10,
           'featured' => false,
           'category_id' => 3,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Pantalon',
+          'name' => 'Lavadora',
           'description' => 'Pantalon de algodon',
           'price' => 20,
           'stock' => 50,
           'featured' => true,
           'category_id' => 4,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Mesa',
+          'name' => 'Nintendo',
           'description' => 'Mesa de madera',
           'price' => 50,
           'stock' => 10,
           'featured' => false,
           'category_id' => 5,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Pantalon',
+          'name' => 'Pistola de juguete',
           'description' => 'Pantalon de algodon',
           'price' => 20,
           'stock' => 50,
           'featured' => true,
           'category_id' => 6,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Mesa',
+          'name' => 'El Quijote',
           'description' => 'Mesa de madera',
           'price' => 50,
           'stock' => 10,
           'featured' => false,
           'category_id' => 7,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Pantalon',
+          'name' => 'Vengadores',
           'description' => 'Pantalon de algodon',
           'price' => 20,
           'stock' => 50,
           'featured' => true,
           'category_id' => 8,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Mesa',
+          'name' => 'Call of Duty',
           'description' => 'Mesa de madera',
           'price' => 50,
           'stock' => 10,
           'featured' => false,
           'category_id' => 9,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ],
         [
-          'name' => 'Pantalon',
+          'name' => 'Nike Air Max',
           'description' => 'Pantalon de algodon',
           'price' => 20,
           'stock' => 50,
           'featured' => true,
           'category_id' => 10,
+          'image' => '/storage/app/public/images/Gemini_Generated_Image_arbsgaarbsgaarbs.jpeg',
           'created_at' => now(),
           'updated_at' => now()
         ]

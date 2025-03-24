@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PedidoController;
-
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarritoContoller;
+use App\Http\Controllers\UsuarioController;
 
 Route::controller(CategoriaController::class)->group(function ()
 {
@@ -33,6 +34,7 @@ Route::controller(ProductoController::class)->group(function ()
     Route::post('/desactivarProducto/{id}', 'deactivate')->name('producto.deactivate');
     Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
     Route::get('/', 'showPrincipal')->name('producto.showPrincipal');
+    Route::get('/producto/{id}', 'show')->name('producto.show');
     Route::get('/paintImg', 'paintImg')->name('producto.paint');
     Route::post('/updateImg', 'updateImg')->name('producto.updateImg');
     Route::get('/mostrarGraficos', 'mostrarGraficos');
@@ -47,11 +49,27 @@ Route::controller(PedidoController::class)->group(function()
     Route::get('/facturaPDF/{id}', 'generarPDF')->name('pedido.generarPDF');
 });
 
+Route::controller(AuthController::class)->group(function()
+{
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login')->name('login.post');
+    Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::controller(CarritoContoller::class)->group(function()
+{
+    Route::get('/carrito', 'index')->name('showCarrito');
+    Route::post('/addToCart', 'addToCart')->name('addToCart');
+    Route::post('/update-cart', 'updateCart')->name('updateCart');
+    Route::get('/delete-cart-item/{id}', 'deleteCartItem')->name('deleteCartItem');
+});
+
+Route::controller(UsuarioController::class)->group(function()
+{
+    Route::get('/register', 'showRegister')->name('showRegisterForm');
+    Route::post('/register', 'store')->name('newUser');
+});
 
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('principal-admin');
-
-// route::get('/tienda', function(){
-//     return view('pages.productos');
-// })->name('tienda');

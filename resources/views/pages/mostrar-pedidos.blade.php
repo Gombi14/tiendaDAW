@@ -4,24 +4,23 @@
 
 @section('content')
 
-<body>
-    <h1>Lista de Pedidos</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID Pedido</th>
-                <th>Nombre Cliente</th>
-                <th>Fecha Pedido</th>
-                <th>Productos</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Precio Total</th>
-                <th>Fecha de Entrega</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+<h1 class="title">Lista de Pedidos</h1>
+<table class="w-full table-fixed border-collapse border-">
+    <thead>
+        <tr>
+            <th>ID Pedido</th>
+            <th>Nombre Cliente</th>
+            <th>Fecha Pedido</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Precio Total</th>
+            <th>Fecha de Entrega</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
             @foreach($pedidos as $pedido)
                 <tr>
                     <td>{{ $pedido->id }}</td>

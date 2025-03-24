@@ -3,14 +3,19 @@
 @tailwind utilities;
 
 @layer components {
+  /* .card {
+    @apply box-border min-w-[350px] max-w-full flex flex-col w-full sm:w-1/2 md:w-1/3 lg:w-1/4  text-white p-4 rounded-lg max-h-fit;
+  } */
   .card {
-    @apply flex flex-col min-w-[340px] bg-gray-900 text-white p-4 rounded-lg;
+    @apply box-border min-w-[350px] flex flex-col w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-white p-4 rounded-lg max-h-fit;
   }
-
   .title {
-    @apply text-lg font-bold;
+    @apply text-3xl font-bold mb-4;
   }
   .bg-dashboard{
     @apply bg-[#565656];
+  }
+  .shadow-green{
+    @apply shadow-[0px_0px_14px_1px_#73FF50];
   }
 }

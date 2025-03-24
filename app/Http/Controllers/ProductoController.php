@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
-use Illuminate\Support\Facades\Log;
 
 class ProductoController extends Controller
 {
@@ -60,6 +59,11 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         return view(('pages.crear-producto'), compact('categorias'));
     }
+    public function show(string $id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('pages.producto', compact('producto'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -95,7 +99,8 @@ class ProductoController extends Controller
             $nombre = $image->getClientOriginalName();
             $path = $image->storeAs('app/public/images', $nombre, 'public');
             $producto->image = Storage::url($path);
-      
+        }
+        
         
         $producto->save();
         
@@ -103,15 +108,7 @@ class ProductoController extends Controller
         // Redirect to a specific route with a success message
         return redirect()->route('producto.index')->with('success', 'Producto creado exitosamente');
     }
-}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
