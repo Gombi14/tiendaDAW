@@ -191,5 +191,59 @@ class ProductoController extends Controller
     {
         return view('pages.editar-imagen');
     }
+
+    public function updateImg(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Valida que sea una imagen
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $nombre = $image->getClientOriginalName();
+            $path = $image->storeAs('app/public/images', $nombre, 'public');
+            $producto->image = Storage::url($path);
+        }
+
+        return redirect()->route('producto.index')->with('success', 'Imagen actualizada exitosamente');
+    }
+
+    public function mostrarGraficos()
+    {
+        // Obtener los 5 productos con menor stock
+        $stockProductos = Producto::orderBy('stock', 'asc')->take(5)->get();
+
+        // Datos inventados de productos más vendidos
+        $productosMasVendidos = [
+            ['name' => 'aaaa', 'ventas' => 150],
+            ['name' => 'Pantalon', 'ventas' => 120],
+            ['name' => 'Mesa', 'ventas' => 100],
+            ['name' => 'Anillo', 'ventas' => 90],
+            ['name' => 'Pistolón', 'ventas' => 80],
+        ];
+
+        // Datos inventados de volumen de ventas totales por mes
+        $ventasPorMes = [
+            ['month' => 'Enero', 'ventas' => '1200'],
+            ['month' => 'Febrero', 'ventas' => '1700'],
+            ['month' => 'Marzo', 'ventas' => '2000'],
+            ['month' => 'Abril', 'ventas' => '1000'],
+            ['month' => 'Mayo', 'ventas' => '900'],
+            ['month' => 'Junio', 'ventas' => '1500'],
+            ['month' => 'Julio', 'ventas' => '1800'],
+            ['month' => 'Agosto', 'ventas' => '1900'],
+            ['month' => 'Septiembre', 'ventas' => '2100'],
+            ['month' => 'Octubre', 'ventas' => '2200'],
+            ['month' => 'Noviembre', 'ventas' => '2300'],
+            ['month' => 'Diciembre', 'ventas' => '2400'],
+            
+        ];
+
+        // Pasar los datos a la vista
+        return view('pages.mostrar-graficos', compact('stockProductos', 'productosMasVendidos', 'ventasPorMes'));
+    }
+
+   
 }
+
 

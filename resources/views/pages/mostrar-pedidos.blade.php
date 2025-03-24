@@ -12,9 +12,9 @@
                 <th>ID Pedido</th>
                 <th>Nombre Cliente</th>
                 <th>Fecha Pedido</th>
-                <th>Producto</th>
+                <th>Productos</th>
                 <th>Cantidad</th>
-                <th>Precio</th>
+                <th>Precio Unitario</th>
                 <th>Precio Total</th>
                 <th>Fecha de Entrega</th>
                 <th>Estado</th>
@@ -29,29 +29,30 @@
                     <td>{{ $pedido->created_at }}</td>
                     <td>
                         @foreach($pedido->productos as $producto)
-                            <td>{{ $producto->name }}</td>
+                            {{ $producto->name }}<br>
                         @endforeach
                     </td>
                     <td>
                         @foreach($pedido->productos as $producto)
-                            <td>{{ $producto->pivot->quantity }}</td>
+                            {{ $producto->pivot->quantity }}<br>
                         @endforeach
                     </td>
                     <td>
                         @foreach($pedido->productos as $producto)
-                            <td>{{ $producto->price }}</td>
+                            ${{ number_format($producto->price, 2) }}<br>
                         @endforeach
                     </td>
-                    <td>{{ $pedido->productos->sum(function($producto) { return $producto->price* $producto->pivot->quantity; }) }}</td>
-                    <td>{{ $pedido->delivery_date ?? 'Sin Fecha de envío'}}</td>
+                    <td>${{ number_format($pedido->productos->sum(function($producto) { return $producto->price * $producto->pivot->quantity; }), 2) }}</td>
+                    <td>{{ $pedido->delivery_date ?? 'Sin Fecha de envío' }}</td>
                     <td>{{ $pedido->status === 0 ? 'Pendiente de envío' : ($pedido->status === 1 ? 'Enviado' : 'No asignado') }}</td>
                     <td>
-                    <a href="{{ route('pedido.changeStatus', $pedido->id) }}">Cambiar Estado</a>
+                        <a href="{{ route('pedido.changeStatus', $pedido->id) }}">Cambiar Estado</a>
+                        <a href="{{ route('pedido.generarPDF', $pedido->id) }}">Generar PDF</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </body>
-</html>
+
 @endsection

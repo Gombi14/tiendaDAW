@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Usuario;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PedidoController extends Controller
 {
@@ -80,5 +82,15 @@ class PedidoController extends Controller
         $pedido->save();
 
         return redirect()->route('pedido.index')->with('success', 'Estado del pedido actualizado exitosamente');
+    }
+
+    public function generarPDF(string $id){
+
+        $pedido = Pedido::with('productos')->findOrFail($id);
+
+        $pdf = PDF::loadView('pages.pdf-factura', compact('pedido'));
+
+        return $pdf->download("factura_pedido_{$id}.pdf");
+
     }
 }

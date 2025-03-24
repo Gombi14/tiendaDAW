@@ -34,12 +34,17 @@ Route::controller(ProductoController::class)->group(function ()
     Route::post('/activarProducto/{id}', 'activate')->name('producto.activate');
     Route::get('/', 'showPrincipal')->name('producto.showPrincipal');
     Route::get('/paintImg', 'paintImg')->name('producto.paint');
+    Route::post('/updateImg', 'updateImg')->name('producto.updateImg');
+    Route::get('/mostrarGraficos', 'mostrarGraficos');
+    
+
 });
 
 Route::controller(PedidoController::class)->group(function()
     {
     Route::get('/mostrarPedidos', 'index')->name('pedido.index');
     Route::get('/cambiarEstadoPedido/{id}', 'changeStatus')->name('pedido.changeStatus');
+    Route::get('/facturaPDF/{id}', 'generarPDF')->name('pedido.generarPDF');
 });
 
 

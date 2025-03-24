@@ -56,7 +56,7 @@
                 </td>
                 <td>{{ $producto->categoria->name}}</td>
                 <td>
-                    <img src="{{ asset($producto->image) }}" alt="No se ve una mierda"  style="width: 100px; height: auto;">
+                    <img src="{{ asset($producto->image) }}" alt="Imagen de {{$producto->name}}"  style="width: 100px; height: auto;">
                 </td>
                 
                 <td class="p-3">
