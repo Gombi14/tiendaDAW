@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('address')->nullable();
             $table->string('role');
+            $table->boolean('drag_and_drop')->default(false);
             $table->timestamps();
         });
     }

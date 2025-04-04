@@ -125,6 +125,7 @@ return [
 
     'aliases' => [
         'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
     ],
 
 

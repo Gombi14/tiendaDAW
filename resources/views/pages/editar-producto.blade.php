@@ -11,7 +11,7 @@
                 
         <div class="form-group">
             <label for="name">Nombre del Producto:</label>
-            <input class="text-black"type="text" class="form-control" id="name" name="name" value="{{ $producto->name }}" required>
+            <input class="text-black" type="text" class="form-control" id="name" name="name" value="{{ $producto->name }}" required>
         </div>
         
         <div class="form-group">

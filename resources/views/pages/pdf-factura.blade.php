@@ -52,7 +52,11 @@
         </table>
 
         <h3 class="total">Total a Pagar: ${{ number_format($pedido->productos->sum(function($producto) { return $producto->price * $producto->pivot->quantity; }), 2) }}</td> €</h3>
-        <h3>Gràcies per la seva compra</h3>
+        <footer style="margin-top: 20px; text-align: center; font-size: 14px; color: #555;">
+            <p>Gràcies per la seva compra</p>
+            <p>Per més informació, contacti amb nosaltres a través de la nostra pàgina web o al següent correu electrònic: admin@gmail.com</p>
+            <p>El Garaje de Rick - Tots els drets reservats &copy; {{ date('Y') }}</p>
+        </footer>
     </div>
 </body>
 </html>

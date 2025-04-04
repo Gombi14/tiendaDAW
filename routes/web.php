@@ -68,6 +68,8 @@ Route::controller(UsuarioController::class)->group(function()
 {
     Route::get('/register', 'showRegister')->name('showRegisterForm');
     Route::post('/register', 'store')->name('newUser');
+    Route::get('/editUser/{id}', 'edit')->name('user.edit');
+    Route::post('/updateUser/{id}', 'update')->name('user.update');
 });
 
 Route::get('/dashboard', function () {

@@ -75,7 +75,8 @@ class UsuarioController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = Usuario::FindOrFail($id);
+        return view("pages.editar-user", compact('user'));
     }
 
     /**
@@ -83,7 +84,25 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'password' => 'sometimes',
+
+        ]);
+        $user = Usuario::findOrFail($id);
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        if (Usuario::where('email', $request->email)->where('id', '!=', $id)->exists()) {
+            return back()->withErrors(['email' => 'El email está en uso']);
+        }
+
+        $user->save();
+        return redirect('/')->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**

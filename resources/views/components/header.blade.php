@@ -3,7 +3,7 @@
         <a href="/">
             <div class="flex">
                 <img src="{{ asset('img/logo.png') }}" alt="" style="max-height: 60px;">
-                <h1 class="text-3xl flex items-center">Tienda</h1>
+                <h1 class="text-3xl flex items-center">El Garaje de Rick</h1>
             </div>
         </a>
         <nav class="flex items-center">
@@ -15,6 +15,7 @@
                     <li class="hover:underline"><a href="/login">Inicia Sessión</a></li>
                 @else
                     <li class="hover:underline"><a href="/logout">Cerrar Sessión</a></li>
+                    <li class="hover:underline"><a href="{{ route('user.edit', Auth::user()->id) }}">Editar Credenciales</a></li>
                 @endif
             </ul>
         </nav>
