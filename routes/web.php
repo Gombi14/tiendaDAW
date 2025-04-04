@@ -7,6 +7,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarritoContoller;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PayPalController;
 
 Route::controller(CategoriaController::class)->group(function ()
 {
@@ -45,6 +46,7 @@ Route::controller(ProductoController::class)->group(function ()
 Route::controller(PedidoController::class)->group(function()
     {
     Route::get('/mostrarPedidos', 'index')->name('pedido.index');
+    Route::get('/checkout', 'checkout')->name('pedido.checkout');
     Route::get('/cambiarEstadoPedido/{id}', 'changeStatus')->name('pedido.changeStatus');
     Route::get('/facturaPDF/{id}', 'generarPDF')->name('pedido.generarPDF');
 });
@@ -75,3 +77,9 @@ Route::controller(UsuarioController::class)->group(function()
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('principal-admin');
+
+
+
+Route::get('/paypal/pay', [PayPalController::class, 'createPayment'])->name('paypal.pay');
+Route::get('/paypal/success', [PayPalController::class, 'executePayment'])->name('paypal.success');
+Route::get('/paypal/cancel', [PayPalController::class, 'cancelPayment'])->name('paypal.cancel');

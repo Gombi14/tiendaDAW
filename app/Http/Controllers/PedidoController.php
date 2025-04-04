@@ -11,6 +11,7 @@ use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Usuario;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Carrito;
 
 
 class PedidoController extends Controller
@@ -22,6 +23,32 @@ class PedidoController extends Controller
     {
         $pedidos = Pedido::with('usuarios', 'productos')->get();
         return view('pages.mostrar-pedidos', compact('pedidos'));
+    }
+
+    public function checkout()
+    {
+        $cart = Carrito::where('user_id', Auth::id())->get();
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('warning', 'Antes de comprar, tienes que iniciar sesión.');
+        }
+        if ($cart->isEmpty()) {
+            return redirect()->route('carrito.index')->with('warning', 'No tienes productos en el carrito.');
+        }
+
+        //obtener el total del pedido y el numero de elemntos dentro del carrito del usuario
+        $data = [
+            'total' => 0,
+            'items' => 0,
+        ];
+        foreach ($cart as $item) {
+            $producto = Producto::find($item->product_id);
+            if ($producto) {
+                $data['total'] += $producto->price * $item->quantity;
+                $data['items'] += $item->quantity;
+            }
+        }        
+        $email = Auth::user()->email;
+        return view('pages.checkout', compact('data','email'));
     }
 
     /**

@@ -69,7 +69,7 @@ class ProductosSeeder extends Seeder
           'updated_at' => now()
         ],
         [
-          'name' => 'Pistola de juguete',
+          'name' => 'Pistolón',
           'description' => 'Pantalon de algodon',
           'price' => 20,
           'stock' => 50,

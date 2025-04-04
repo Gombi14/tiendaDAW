@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use App\Models\Usuario;
 
 class UsuarioController extends Controller
@@ -39,28 +39,34 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        if (empty($request->nombre) || empty($request->contraseña) || empty($request->apellido) || empty($request->email)) {
-            return back()->withErrors(['obligatorios'=>'Todos los campos son obligatorios']);
-        }
-        $nombre = $request->nombre;
-        $contraseña = Hash::make($request->contraseña);
-        $apellido = $request->apellido;
-        $email = $request->email;
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
 
-        if (Usuario::where('email', $request->email)->exists()) {
-            return back()->withErrors(['email' => 'El email está en uso']);
-        }
-        Usuario::create([
-            'name' => $nombre,
-            'password' => $contraseña,
-            'surname' => $apellido,
+        $usuario = Usuario::create([
+            'name' => $request->nombre,
+            'surname' => $request->apellido,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // Se encripta correctamente
             'phone' => null,
-            'email' => $email,
             'address' => null,
             'role' => 'comprador'
         ]);
-        return redirect('/');
+
+        // Iniciar sesión automáticamente
+        Auth::login($usuario);
+
+        // Guardar datos en sesión
+        Session::put('name', Auth::user()->name);
+        Session::put('email', Auth::user()->email);
+        Session::put('role', Auth::user()->role);
+
+        return redirect('/'); // Redirigir a la página principal
     }
+
 
     /**
      * Display the specified resource.

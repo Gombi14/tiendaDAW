@@ -19,14 +19,16 @@
                     <h1 class="title">Registro</h1>
                     <form action="{{ route('newUser') }}" method="POST">
                         @csrf
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
-                        <label for="apellido">Apellido</label>
-                        <input type="text" name="apellido" id="apellido" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>               
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
-                        <label for="contraseña">Contraseña</label>
-                        <input type="password" name="password" id="password" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full" required><br>
+                        <div class="mb-4">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="input" required><br>
+                            <label for="apellido">Apellido</label>
+                            <input type="text" name="apellido" id="apellido" class="input" required><br>               
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" class="input" required><br>
+                            <label for="contraseña">Contraseña</label>
+                            <input type="password" name="password" id="password" class="input" required><br>
+                        </div>
                         <button class="rounded-lg text-2xl mb-3 bg-[#444444] border-[1px] border-separate border-[#73FF50] p-4 text-white w-full">Registrarse</button>
                     </form>
                     @if ($errors->any())
