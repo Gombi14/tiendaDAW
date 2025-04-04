@@ -11,7 +11,7 @@
     <h1>Productes més venuts</h1>
     <canvas id="productoCanvas" width="500" height="300"></canvas>
     <h1>Volum de vendas per mes</h1>
-    <canvas id="ventasCanvas" width="5000" height="400"></canvas>
+    <canvas id="ventasCanvas" class="font-mono" width="1300" height="400"></canvas>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -44,7 +44,7 @@
                 ctxStock.fillStyle = 'rgb(255, 0, 55)';
                 ctxStock.fillRect(x, y, anchoBarra, altura);
 
-                ctxStock.fillStyle = 'black';
+                ctxStock.fillStyle = 'white';
                 ctxStock.font = '14px Arial';
                 ctxStock.fillText(producto.stock, x + 15, y - 5);
                 ctxStock.fillText(producto.name.substring(0, 8), x, margenInf + 15);
@@ -56,7 +56,7 @@
             ctxStock.lineTo(450, margenInf);
             ctxStock.stroke();
 
-            ctxStock.fillStyle = 'black';
+            ctxStock.fillStyle = 'white';
             ctxStock.font = '16px Arial';
             ctxStock.fillText('Stock', margenIzq - 50, 30);
             ctxStock.fillText('Productos', 400, margenInf + 40);
@@ -91,7 +91,7 @@
                 ctxProducto.fillStyle = 'rgb(0, 153, 255)';
                 ctxProducto.fillRect(x, y, anchoBarra, altura);
 
-                ctxProducto.fillStyle = 'black';
+                ctxProducto.fillStyle = 'white';
                 ctxProducto.font = '14px Arial';
                 ctxProducto.fillText(producto.ventas, x + 15, y - 5);
                 ctxProducto.fillText(producto.name.substring(0, 8), x, margenInf + 15);
@@ -103,7 +103,7 @@
             ctxProducto.lineTo(950, margenInf);
             ctxProducto.stroke();
 
-            ctxProducto.fillStyle = 'black';
+            ctxProducto.fillStyle = 'white';
             ctxProducto.font = '16px Arial';
             ctxProducto.fillText('Ventas', margenIzq - 50, 30);
             ctxProducto.fillText('Productos', 400, margenInf + 40);
@@ -138,7 +138,7 @@
                 ctxVentas.fillStyle = 'rgb(0, 255, 55)';
                 ctxVentas.fillRect(x, y, anchoBarra, altura);
 
-                ctxVentas.fillStyle = 'black';
+                ctxVentas.fillStyle = 'white';
                 ctxVentas.font = '14px Arial';
                 ctxVentas.fillText(venta.ventas, x + 15, y - 5);
                 ctxVentas.fillText(venta.month.substring(0, 10), x, margenInf + 15);
@@ -150,7 +150,7 @@
             ctxVentas.lineTo(margenIzq + (ventasPorMes.length * (anchoBarra + espacio)), margenInf);
             ctxVentas.stroke();
 
-            ctxVentas.fillStyle = 'black';
+            ctxVentas.fillStyle = 'white';
             ctxVentas.font = '16px Arial';
             ctxVentas.fillText('Ventas', margenIzq - 50, 30);
             ctxVentas.fillText('Meses', 1100, margenInf + 40);

@@ -21,72 +21,49 @@ class CarritoContoller extends Controller
 
         if(Auth::check()){
             $cart = Carrito::where('user_id', Auth::id())->get();
-
-            $cart = $cart ? json_decode($cart, true) : [];
-
-            $productIds = array_column($cart, 'product_id');
-        
-            // Obtener los productos desde la base de datos
-            $products = Producto::whereIn('id', $productIds)->get();
-    
-    
-            // Crear una respuesta con cantidad del carrito y datos del producto
-            $cartDetails = [];
-            foreach ($products as $product) {
-                // Buscar la cantidad desde el carrito
-                $quantity = 0;
-                foreach ($cart as $item) {
-                    if ($item['product_id'] == $product->id) {
-                        $quantity = $item['quantity'];
-                    }
-                }
-    
-                // Agregar a la respuesta
-                $cartDetails[] = [
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'image' => $product->image,
-                    'price' => $product->price,
-                    'quantity' => $quantity
-                ];
-            }
-
-
         }else{
-            
             $cart = Cookie::get('cart');
-            $cart = $cart ? json_decode($cart, true) : [];
-        
-            // Extraer solo los IDs de los productos
-            $productIds = array_column($cart, 'product_id');
-        
-            // Obtener los productos desde la base de datos
-            $products = Producto::whereIn('id', $productIds)->get();
-    
-    
-            // Crear una respuesta con cantidad del carrito y datos del producto
-            $cartDetails = [];
-            foreach ($products as $product) {
-                // Buscar la cantidad desde el carrito
-                $quantity = 0;
-                foreach ($cart as $item) {
-                    if ($item['product_id'] == $product->id) {
-                        $quantity = $item['quantity'];
-                    }
-                }
-    
-                // Agregar a la respuesta
-                $cartDetails[] = [
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'image' => $product->image,
-                    'price' => $product->price,
-                    'quantity' => $quantity
-                ];
-            }
-    
         }
-        return view('pages.carrito', compact('cartDetails'));
+
+        $cart = $cart ? json_decode($cart, true) : [];
+    
+        // Extraer solo los IDs de los productos
+        $productIds = array_column($cart, 'product_id');
+    
+        // Obtener los productos desde la base de datos
+        $products = Producto::whereIn('id', $productIds)->get();
+
+        // Crear una respuesta con cantidad del carrito y datos del producto
+        $cartDetails = [];
+        foreach ($products as $product) {
+            // Buscar la cantidad desde el carrito
+            $quantity = 0;
+            foreach ($cart as $item) {
+                if ($item['product_id'] == $product->id) {
+                    $quantity = $item['quantity'];
+                }
+            }
+
+            // Agregar a la respuesta
+            $cartDetails[] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'image' => $product->image,
+                'price' => $product->price,
+                'quantity' => $quantity
+            ];
+        }
+    
+        
+        $totalPrice = 0;
+        $totalItems = 0;
+        foreach ($cartDetails as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+            $totalItems += $item['quantity'];
+        }
+        // $cartDetails['totalPrice'] = $totalPrice; 
+        Log::debug($cartDetails);
+        return view('pages.carrito', compact('cartDetails', 'totalPrice', 'totalItems'));
     }
 
     public function updateCart(Request $request){
@@ -149,7 +126,6 @@ class CarritoContoller extends Controller
     
             // Guardar la cookie actualizada
             Cookie::queue(Cookie::make('cart', json_encode(array_values($cart)), 60 * 24 * 7));
-    
             return redirect()->back()->with('success', 'Producto eliminado del carrito.');
         }
     }

@@ -19,12 +19,21 @@
                     <h1 class="title">Inicio de sesión</h1>
                     <form action="{{ route('login.post') }}" method="POST">
                         @csrf
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full"><br>
-                        <label for="contraseña">Contraseña</label>
-                        <input type="password" name="password" id="password" class="p-2 rounded-lg border border-gray-300 mb-4 text-black w-full"><br>
+                        <div class="mb-4">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" class="input" required><br>
+                            <label for="contraseña">Contraseña</label>
+                            <input type="password" name="password" id="password" class="input" required><br>
+                        </div>
                         <button class="rounded-lg text-2xl mb-3 bg-[#444444] border-[1px] border-separate border-[#73FF50] p-4 text-[#73ff50] text-white w-full">Iniciar sessión</button>
                     </form>
+
+                    @if(session('warning'))
+                        <div class="text-red-300">
+                            {{ session('warning') }}
+                        </div>
+                    @endif
+
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">

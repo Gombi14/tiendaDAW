@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'paypal' => [
+        'mode' => env('PAYPAL_MODE', 'sandbox'),
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'secret' => env('PAYPAL_CLIENT_SECRET'),
+    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
@@ -34,5 +39,4 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
 ];

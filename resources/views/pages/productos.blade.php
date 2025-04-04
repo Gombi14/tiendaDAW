@@ -9,9 +9,9 @@
     <div class="min-w-[270px] ">
         <nav class="flex flex-col gap-4 w-[250px] bg-boton p-4 mb-3 rounded-lg shadow-[0px_0px_14px_1px_#73FF50] fixed">
             <label for="Buscar producto" class="text-white text-2xl mb-0">Nombre</label>
-            <input type="text" id="search" placeholder="Buscar producto" class="p-2 rounded-lg border border-gray-300">
+            <input type="text" id="search" placeholder="Buscar producto" class="input">
             <label for="Buscar producto" class="text-white text-2xl mb-0">Categoria</label>
-            <select class="p-2 rounded-lg bg-white min-h-[42px] border border-gray-300 mb-4" name="categorias" id="categorias-select">
+            <select class="input" name="categorias" id="categorias-select">
                 <option value="">Todas las categorías</option>
                 @foreach($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>

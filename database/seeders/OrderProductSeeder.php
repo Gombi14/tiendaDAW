@@ -9,19 +9,38 @@ class OrderProductSeeder extends Seeder
 {
     public function run()
     {
-        $orderIds = [1, 2];
-        $productIds = range(1, 11);
-
-        $data = [];
-        foreach ($orderIds as $orderId) {
-            foreach ($productIds as $productId) {
-                $data[] = [
-                    'order_id' => $orderId,
-                    'product_id' => $productId,
-                    'quantity' => rand(1, 10), // Cantidad aleatoria entre 1 y 10
-                ];
-            }
-        }
+        $data = [
+            [
+                'order_id' => 1,
+                'product_id' => 1,
+                'quantity' => 2,
+            ],
+            [
+                'order_id' => 1,
+                'product_id' => 2,
+                'quantity' => 1,
+            ],
+            [
+                'order_id' => 2,
+                'product_id' => 3,
+                'quantity' => 3,
+            ],
+            [
+                'order_id' => 2,
+                'product_id' => 4,
+                'quantity' => 1,
+            ],
+            [
+                'order_id' => 1,
+                'product_id' => 5,
+                'quantity' => 2,
+            ],
+            [
+                'order_id' => 1,
+                'product_id' => 6,
+                'quantity' => 1,
+            ],
+        ];        
 
         DB::table('order_product')->insert($data);
     }
