@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Productos')
+@section('title', 'Pagina Pricipal')
 
 @section('content')
 

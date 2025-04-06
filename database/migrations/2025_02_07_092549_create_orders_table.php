@@ -16,6 +16,11 @@ return new class extends Migration
             $table->float('total_price');
             $table->boolean('status')->default(false); // false = pending, true = delivered
             $table->dateTime('delivery_date')->nullable();
+            $table->text('direction');
+            $table->text('phone');
+            $table->text('name');
+            $table->text('surname');
+            $table->text('email');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

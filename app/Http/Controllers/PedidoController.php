@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use App\Models\Usuario;
 use App\Models\Pedido;
 use App\Models\Producto;
-use App\Models\Usuario;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Carrito;
 
@@ -49,6 +49,20 @@ class PedidoController extends Controller
         }        
         $email = Auth::user()->email;
         return view('pages.checkout', compact('data','email'));
+    }
+
+    public function misPedidos(){
+        
+        $pedidos = Pedido::where('user_id', Auth::id())->get();
+
+        Log::debug($pedidos);
+
+        if(Cookie::get('pedido_completado')==true){
+            Cookie::forget('pedido_completado');
+            return view('pages.misPedidos', compact('pedidos'));      
+        }
+        
+        return view('pages.misPedidos', compact('pedidos'));        
     }
 
     /**

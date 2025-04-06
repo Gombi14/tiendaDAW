@@ -3,6 +3,7 @@
 @section('title', 'Productos')
 
 @section('content')
+<script src="https://js.stripe.com/v3/"></script>
 
 <div class="text-white flex justify-center items-center">
 
@@ -17,7 +18,7 @@
                 <h1 class="text-xl w-full">Total: {{$data['total']}}€</h1>
             </div>
             <div class="w-2/3">
-                <form action="/iniciarPedido" method="POST">
+                <form action="{{ route('checkout.session') }}" method="POST">
                     @csrf
                     <div class="mb-4 mt-4">
                         <h2 class="text-xl">Información de contacto</h2>
@@ -47,9 +48,8 @@
                         <label for="direccion">Direccion</label>
                         <input type="text" name="direccion" id="direccion" class="input" required>
                     </div>
-                    {{--<button class="button">Proceder al pago</button>--}}
-                    <a href="{{ route('paypal.pay') }}" class="button">Pagar con PayPal</a>
-
+                    @csrf
+                    <button type="submit" class="button" id="checkout-button">Proceder al pago</button>
                 </form>
             </div>
         </div>

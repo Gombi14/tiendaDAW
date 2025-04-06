@@ -10,12 +10,14 @@
             <ul class="flex gap-4">
                 <li class="hover:underline"><a href="/tienda">Productos</a></li>
                 <li class="hover:underline"><a href="/carrito">Carrito</a></li>
-                <li class="hover:underline"><a href="/dashboard">Dashboard</a></li>
+                @if (Auth::check() && Auth::user()->role=='administrador')
+                    <li class="hover:underline"><a href="/dashboard">Dashboard</a></li>
+                @endif
                 @if (!Auth::check())
                     <li class="hover:underline"><a href="/login">Inicia Sessión</a></li>
                 @else
                     <li class="hover:underline"><a href="/logout">Cerrar Sessión</a></li>
-                    <li class="hover:underline"><a href="{{ route('user.edit', Auth::user()->id) }}">Editar Credenciales</a></li>
+                    <li class="hover:underline"><a href="{{ route('user.edit', Auth::user()->id) }}"><i class="fa-solid fa-user px-5"></i></a></li>
                 @endif
             </ul>
         </nav>
