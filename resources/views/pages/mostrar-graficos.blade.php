@@ -11,7 +11,7 @@
     <h1>Productes més venuts</h1>
     <canvas id="productoCanvas" width="600" height="300"></canvas>
     <h1>Volum de vendas per mes</h1>
-    <canvas id="ventasCanvas" width="5000" height="400"></canvas>
+    <canvas id="ventasCanvas" width="1500" height="400"></canvas>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {

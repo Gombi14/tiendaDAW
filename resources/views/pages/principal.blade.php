@@ -85,6 +85,18 @@
         }
 </style>
 
+
+<div class="min-h-[89vh] flex">
+
+<div class="text-8xl flex text-[#73FF50] items-center w-[45%] p-4">El garaje de Rick</div>
+<div class="flex w-[55%] justify-end">
+    <img src="{{asset('img/morty-principal.png')}}"  class="h-[580px] mt-[150px]" alt="morty">
+    <img src="{{asset('img/portal-principal.png')}}"  class="h-auto" alt="morty">
+</div>
+    
+
+</div>
+
 <div id="gamePopup" class="hidden">
     <h3>Arrastra los elementos al lugar correcto</h3>
     <div id="draggables">
@@ -100,7 +112,8 @@
 </div>
 
 @if($productos->count() > 0)
-        <div class="flex gap-4 overflow-x-auto max-h-[600px] p-3">
+        <h2 class="pl-4 text-3xl text-white">Productos destacados</h2>
+        <div class="flex gap-4 flex-wrap p-3">
             @foreach($productos as $producto)
                 <a href="/producto/{{$producto->id}}">
                 <div class="card">
@@ -115,12 +128,6 @@
     @else
         <p>No hay productos destacados disponibles.</p>
 @endif
-
-
-
-
-
-
 
 
 <script type="text/javascript">

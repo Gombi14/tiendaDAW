@@ -11,10 +11,10 @@
        
         <div class="form-group">
             <label for="name">Nombre de la Categoría</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ $categoria->name }}" required>
+            <input type="text" name="name" id="name" class="input" value="{{ $categoria->name }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        <button type="reset" class="btn btn-danger">Descartar Cambios</button>
+        <button type="submit" class="button">Guardar Cambios</button>
+        <button type="reset" class="button">Descartar Cambios</button>
         <a href="{{ route('categoria.index') }}" class="btn btn-secondary">Volver</a>
     </form>
 </div>

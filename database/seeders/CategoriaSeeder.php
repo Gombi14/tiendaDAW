@@ -14,12 +14,12 @@ class CategoriaSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'name' => 'Accesorio',
+                'name' => 'Coleccionable',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'Prenda de Ropa',
+                'name' => 'Figura',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -29,12 +29,12 @@ class CategoriaSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'name' => 'Electrodomestico',
+                'name' => 'Uso Diario',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'Electronico',
+                'name' => 'Ropa',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

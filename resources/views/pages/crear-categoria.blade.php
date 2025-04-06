@@ -9,7 +9,7 @@
     @csrf
     <div class="mt-4">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="name" name="name" required>
+        <input class="input" type="text" id="name" name="name" required>
     </div>
     <div>
         <button type="submit">Crear Categoría</button>

@@ -5,14 +5,12 @@
 @section('content')
 
 <div class="container">
-    <h1>Productos Desactivados</h1>
+    <h1 class="text-3xl">Productos Desactivados</h1>
     @if ($productos->isEmpty())
-        <tr>
-            <td colspan="3" class="text-center">No hay productos para mostrar.</td><br>
-        </tr>
-        <tr>
-            <a href="{{ route('producto.index') }}" class="btn btn-primary">Volver a productos activos</a>
-        </tr>
+        <h1 colspan="3" class="text-2xl">No hay productos para mostrar.</h1><br>
+        <div class="h-[60vh] flex items-center justify-center">
+            <a href="{{ route('producto.index') }}" class="button w-[50%] text-center">Volver a productos activos</a>
+        </div>
     @elseif ($productos->isNotEmpty())
     <table class="table table-striped">
         <thead>

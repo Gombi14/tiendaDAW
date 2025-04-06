@@ -7,12 +7,16 @@
 <div class="flex w-full justify-between gap-3 items-center">
     <h1 class="text-3xl font-bold">Lista de Categorías</h1>
     <div class="flex gap-3">
-        <button class="bg-blue-300 p-3 rounded-lg text-white">
-            <a href="{{ route('categoria.create') }}">Crear Categoría</a>
-        </button>
-        <button class="bg-blue-300 p-3 rounded-lg text-white">
-            <a href="{{ route('categoria.showDeactivated') }}">Ver Categorías Desactivadas</a>
-        </button>
+        <a href="{{ route('categoria.create') }}">
+            <button class="button">
+                Crear Categoría
+            </button>
+        </a>
+        <a href="{{ route('categoria.showDeactivated') }}">
+            <button class="button">
+                Ver Categorías Desactivadas
+            </button>
+        </a>
     </div>
 </div>
 @if ($categorias->isEmpty())
@@ -24,12 +28,12 @@
         </tr>
 @elseif ($categorias->isNotEmpty())
 <div class="container mt-5">
-    <table class="border border-collapse border-gray-300 w-full text-left">
-        <thead class="bg-gray-200">
+    <table class="w-full text-left">
+        <thead>
             <tr>
-                <th>ID</th>
+                <th class="text-center">Identificador</th>
                 <th>Nombre</th>
-                <th>Acciones</th>
+                <th class="text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>     
@@ -37,15 +41,15 @@
             <tr>
                 <td class="text-center">{{ $categoria->id }}</td>
                 <td>{{ $categoria->name }}</td>
-                <td class="flex gap-3 p-3">
+                <td class="flex gap-3 p-3 justify-center">
                     <a href="{{ route('categoria.edit', $categoria->id) }}">
-                        <button class="bg-green-300 p-3 rounded-lg text-white">
+                        <button class="button">
                             Editar
                         </button>
                     </a>
                     <form action="{{ route('categoria.deactivate', $categoria->id) }}" method="POST" style="display:inline-block;">
                         @csrf
-                        <button type="submit" class="bg-blue-300 p-3 rounded-lg text-white">Desactivar</button>
+                        <button type="submit" class="button">Desactivar</button>
                     </form>
                 </td>
             </tr>

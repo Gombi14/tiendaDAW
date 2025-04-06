@@ -61,25 +61,26 @@
                 
                 <td class="p-3">
                     <div class="flex gap-3 justify-center">
-                        <div class="w-1/2">
+                        <div class="w-1/3">
                             <a href="{{ route('producto.edit', $producto->id) }}">
-                                <button class="bg-yellow-500 p-3 rounded-lg w-full text-white">
+                                <button class="button">
                                     Editar
                                 </button>
                             </a>
                         </div>
-                        <form  class="w-1/2" action="{{ route('producto.deactivate', $producto->id) }}" method="POST">
+                        <form  class="w-1/3" action="{{ route('producto.deactivate', $producto->id) }}" method="POST">
                             <div>
                                 @csrf
-                                <button type="submit" class="bg-red-600 w-full p-3 rounded-lg text-white">Desactivar</button>
+                                <button type="submit" class="button h-full">Desactivar</button>
                             </div>
                         </form>
-                        <div>
+                        <div class="w-1/3">
                             <a href="{{ route('producto.paint', $producto->id) }}">
-                                <button class="bg-blue-300 p-3 rounded-lg text-white">
-                                    Editar Imagen
+                                <button class="button">
+                                    Editar foto
                                 </button>
                             </a>
+                        </div>
         @if ($productos->isEmpty())
         <tr>
             <td colspan="3" class="text-center">No hay productos para mostrar.</td>

@@ -4,5 +4,6 @@
         <a href="/mostrarCategorias" class="hover:underline">Gestionar Categorias</a>
         <a href="/mostrarProductos" class="hover:underline">Gestionar Productos</a>
         <a href="/mostrarPedidos" class="hover:underline">Gestionar Pedidos</a>
+        <a href="/mostrarGraficos" class="hover:underline">Mostrar Graficos</a>
     </div>
 </div>
